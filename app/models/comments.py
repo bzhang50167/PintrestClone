@@ -12,6 +12,16 @@ class Comment(db.Model):
     text = db.Column(db.String(255), nullable=False)
     rating = db.Column(db.Integer)
 
+    users = db.relationship(
+        'Users',
+        back_populates='comments'
+    )
+
+    posts = db.relationship(
+        'Posts',
+        back_populates='comments'
+    )
+
 
     def to_dict(self):
         return {
