@@ -25,7 +25,7 @@ def seed_posts(seeded_user):
     return all_post
 
 
-def undo_songs():
+def undo_posts():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
