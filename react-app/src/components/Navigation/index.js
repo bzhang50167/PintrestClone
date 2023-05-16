@@ -3,21 +3,31 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { FaPinterest } from "react-icons/fa";
 
-function Navigation({ isLoaded }){
+
+function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
+	console.log(sessionUser,'user');
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+		<div className='nav-bar'>
+			<ul>
+				<NavLink exact to="/">
+						<FaPinterest size={30} />
+				</NavLink>
+			</ul>
+			<ul>
+				<NavLink exactly to='/home'>
+					Home
+				</NavLink>
+			</ul>
 			{isLoaded && (
-				<li>
+				<ul>
 					<ProfileButton user={sessionUser} />
-				</li>
+				</ul>
 			)}
-		</ul>
+		</div>
 	);
 }
 

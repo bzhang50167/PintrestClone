@@ -26,7 +26,6 @@ def create_comment():
             post_id = form.data['post_id'],
             user_id = form.data['user_id'],
             text = form.data['text'],
-            rating = form.data['rating']
         )
         db.session.add(new_comment)
         db.session.commit()
@@ -43,7 +42,6 @@ def edit_comment(id):
         comment.post_id = form.data['post_id'],
         comment.user_id = form.data['user_id'],
         comment.text = form.data['text'],
-        comment.rating = form.data['rating']
         db.session.commit()
         return jsonify(comment)
     else:

@@ -10,7 +10,6 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     text = db.Column(db.String(255), nullable=False)
-    rating = db.Column(db.Integer)
 
     users = db.relationship(
         'User',
@@ -29,5 +28,6 @@ class Comment(db.Model):
             'postId': self.post_id,
             'userId': self.user_id,
             'text': self.text,
-            'rating': self.rating
+            'rating': self.rating,
+            'user': self.users.to_dict()
         }

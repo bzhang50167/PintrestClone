@@ -1,0 +1,25 @@
+.cards-on-main{
+    width: 200px;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.all-post-page{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.individual-post{
+    display: flex;
+    width: fit-content;
+    /* border: 2px dotted red; */
+    margin-left: 29px;
+}
+
+.single-post-page{
+    display: flex;
+}
+
+.individual-comments{
+    display: flex;
+}

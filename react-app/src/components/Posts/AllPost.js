@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllPostThunk } from "../../store/post";
+import './Post.css'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const SplashPage = () => {
+const AllPost = () => {
     const allPost = useSelector(state => state.post.allPost)
     const posts = Object.values(allPost)
+    const history = useHistory()
     const dispatch = useDispatch()
     console.log(allPost);
     console.log(posts,'posts');
@@ -15,10 +18,12 @@ const SplashPage = () => {
 
     return(
         <div>
-            <div>
+            <div className="all-post-page">
                 {posts?.map( post => (
-                    <div>
-                        <img src={post.imageUrl} />
+                    <div className="individual-post"
+                    onClick={e => history.push(`/post/${post.id}`)}>
+                        <img className="cards-on-main"
+                        src={post.imageUrl}/>
                     </div>
                 ))}
             </div>
@@ -26,4 +31,4 @@ const SplashPage = () => {
     )
 }
 
-export default SplashPage
+export default AllPost

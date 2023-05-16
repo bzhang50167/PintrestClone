@@ -9,19 +9,22 @@ def seed_users():
         email='demo@aa.io',
         password='password',
         first_name='Demo',
-        last_name='Lition')
+        last_name='Lition',
+        profile_pic='http://audiodome-songs.s3.amazonaws.com/9f26e778c519466bba6c448a6dec2fae.jpeg')
     marnie = User(
         username='marnie',
         email='marnie@aa.io',
         password='password',
         first_name='Marnie',
-        last_name='Harris')
+        last_name='Harris',
+        profile_pic='http://audiodome-songs.s3.amazonaws.com/9f26e778c519466bba6c448a6dec2fae.jpeg')
     bobbie = User(
         username='bobbie',
         email='bobbie@aa.io',
         password='password',
         first_name='Bobbie',
-        last_name='Lee')
+        last_name='Lee',
+        profile_pic='http://audiodome-songs.s3.amazonaws.com/9f26e778c519466bba6c448a6dec2fae.jpeg')
 
     all_users = [demo, marnie, bobbie]
     add_users = [db.session.add(user) for user in all_users]

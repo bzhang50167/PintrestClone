@@ -6,4 +6,3 @@ class CommentForm(FlaskForm):
     post_id =IntegerField('post Id', validators=[DataRequired()])
     user_id =IntegerField('user Id', validators=[DataRequired()])
     text = StringField('text', validators=[DataRequired()])
-    rating = IntegerField('rating', validators=[DataRequired()])

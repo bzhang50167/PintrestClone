@@ -10,6 +10,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     text = db.Column(db.String(255))
+    title = db.Column(db.String(255))
     image_url = db.Column(db.String(255))
 
     users = db.relationship(
@@ -32,6 +33,8 @@ class Post(db.Model):
         return{
             'id': self.id,
             'userId': self.user_id,
+            'title': self.title,
             'text': self.text,
-            'imageUrl': self.text
+            'imageUrl': self.image_url,
+            'comments': [comment.to_dict() for comment in self.comments]
         }
