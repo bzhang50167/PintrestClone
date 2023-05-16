@@ -10,7 +10,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)
     text = db.Column(db.String(255))
-    image_url = db.Column(db.String(255), nullable=False)
+    image_url = db.Column(db.String(255))
 
     users = db.relationship(
         'Users',
