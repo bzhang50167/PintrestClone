@@ -9,7 +9,7 @@ def seed_users():
         email='demo@aa.io',
         password='password',
         first_name='Demo',
-        last_lane='Lition')
+        last_name='Lition')
     marnie = User(
         username='marnie',
         email='marnie@aa.io',
@@ -23,10 +23,10 @@ def seed_users():
         first_name='Bobbie',
         last_name='Lee')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    all_users = [demo, marnie, bobbie]
+    add_users = [db.session.add(user) for user in all_users]
     db.session.commit()
+    return all_users
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

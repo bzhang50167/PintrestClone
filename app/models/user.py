@@ -18,17 +18,17 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.String(255))
 
     posts = db.relationship(
-        'Posts',
+        'Post',
         back_populates='users'
     )
 
     comments = db.relationship(
-        'Comments',
+        'Comment',
         back_populates='users'
     )
 
     groups = db.relationship(
-        'Groups',
+        'Group',
         back_populates='users'
     )
 

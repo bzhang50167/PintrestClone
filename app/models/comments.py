@@ -13,12 +13,12 @@ class Comment(db.Model):
     rating = db.Column(db.Integer)
 
     users = db.relationship(
-        'Users',
+        'User',
         back_populates='comments'
     )
 
     posts = db.relationship(
-        'Posts',
+        'Post',
         back_populates='comments'
     )
 

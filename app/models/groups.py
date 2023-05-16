@@ -12,13 +12,13 @@ class Group(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
     group_posts = db.relationship(
-        'Posts',
+        'Post',
         secondary=group_posts,
-        back_populates='group_posts'
+        back_populates='posts_groups'
     )
 
     users = db.relationship(
-        'Users',
+        'User',
         back_populates='groups'
     )
 

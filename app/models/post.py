@@ -8,24 +8,24 @@ class Post(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     text = db.Column(db.String(255))
     image_url = db.Column(db.String(255))
 
     users = db.relationship(
-        'Users',
+        'User',
         back_populates='posts'
     )
 
     comments = db.relationship(
-        'Comments',
+        'Comment',
         back_populates='posts'
     )
 
     posts_groups = db.relationship(
-        'Groups',
+        'Group',
         secondary=group_posts,
-        back_populates='posts_groups'
+        back_populates='group_posts'
     )
 
     def to_dict(self):
