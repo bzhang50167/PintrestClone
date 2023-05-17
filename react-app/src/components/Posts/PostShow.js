@@ -7,6 +7,7 @@ import SubmitBar from "../submitBar";
 import EditPostModal from "../EditPostModal";
 import OpenModalButton from "../OpenModalButton";
 import { BsThreeDots } from 'react-icons/bs'
+import DeletePostModal from "../DeletePostModal";
 
 
 const OnePost = () => {
@@ -40,7 +41,10 @@ const OnePost = () => {
                         buttonText='Edit Post'
                         modalComponent={<EditPostModal id={id} />}
                         />
-                        <OpenModalButton />
+                        <OpenModalButton
+                        buttonText='Delete Post'
+                        modalComponent={<DeletePostModal id={id} />}
+                        />
                     </div>
                     <h2>{post.title}</h2>
                     <div>

@@ -75,6 +75,9 @@ def delete_post(id):
         db.session.delete(post)
         db.session.commit()
 
+        if not 1 <= post.id <= 3:
+            remove_file_from_s3(post.post_pic)
+
         return jsonify({
             'message': 'Post Deleted Successfully'
         })

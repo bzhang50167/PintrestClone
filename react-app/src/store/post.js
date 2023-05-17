@@ -2,6 +2,7 @@ const GET_ALL_POST = 'post/GET_ALL_POST'
 const GET_POST_BY_ID = 'post/GET_POST_BY_ID'
 const CREATE_POST = 'post/CREATE_POST'
 const EDIT_POST = 'post/EDIT_POST'
+const DELETE_POST = 'post/DELETE_POST'
 
 const getAllPostAction = (data) => {
     return {
@@ -31,6 +32,13 @@ const editPostAction = (data) => {
     }
 }
 
+const deletePostAction = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
+    }
+}
+
 export const createPostThunk = (formData) => async dispatch => {
     const res = await fetch('/posts/new' ,{
         method: 'POST',
@@ -41,6 +49,16 @@ export const createPostThunk = (formData) => async dispatch => {
         const data = await res.json()
         console.log(data, 'DATA');
         dispatch(createPostAction(data))
+    }
+}
+
+export const deletePostThunk = (postId) => async dispatch => {
+    const res = await fetch(`/posts/${postId}/delete`, {
+        method:'DELETE'
+    })
+
+    if (res.ok){
+        dispatch(deletePostAction(postId))
     }
 }
 
@@ -102,6 +120,11 @@ const postReducer = (state = initialState, action) => {
         case EDIT_POST:{
             const newState = {...state, allPost: {...state.allPost}, onePost:{}}
             newState.onePost = action.data
+            return newState
+        }
+        case DELETE_POST:{
+            const newState = {...state, allPost: {...state.allPost}}
+            delete newState.allPost[action.postId]
             return newState
         }
         default:

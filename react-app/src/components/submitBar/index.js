@@ -23,7 +23,7 @@ const SubmitBar = (sessionUser) => {
     return (
         <div>
             <div className='bar'>
-                <img className="user-image" src={user.profilePic} />
+                <img className="user-image" src={user?.profilePic} />
                 <div className='inside-bar'>
                     <input
                         type='text'

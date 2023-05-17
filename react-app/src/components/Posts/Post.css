@@ -11,11 +11,13 @@
 
 .options-dropdown{
     position: fixed;
+    display: flex;
     z-index: 500;
     background-color: white;
     border: 1px solid black;
     width: fit-content;
     border-radius: 10px;
+    flex-direction: column;
 }
 
 .hidden {
