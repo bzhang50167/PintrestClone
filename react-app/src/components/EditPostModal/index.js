@@ -30,7 +30,6 @@ const EditPostModal = (id) => {
             title
         }
 
-        console.log(formData);
         await dispatch(editPostThunk(postId ,formData))
     }
 
