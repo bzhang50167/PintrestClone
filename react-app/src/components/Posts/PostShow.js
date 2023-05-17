@@ -9,28 +9,28 @@ import OpenModalButton from "../OpenModalButton";
 import { BsThreeDots } from 'react-icons/bs'
 import DeletePostModal from "../DeletePostModal";
 import { getAllCommentsThunk } from "../../store/comment";
+import EditCommentModal from "../EditCommentModal";
+import DeleteCommentModal from "../DeleteCommentModal";
 
 
 const OnePost = () => {
     const post = useSelector(state => state.post.onePost)
     const sessionUser = useSelector(state => state.session.user)
     const commentObj = useSelector(state => state.comments.allComments)
+    const comment = Object.values(commentObj)
     const [showMenu, setShowMenu] = useState(false)
     const dispatch = useDispatch()
     const { id } = useParams()
     const ulClassName = "options-dropdown" + (showMenu ? "" : " hidden");
-    console.log(id);
+    // console.log(id);
     useEffect(() => {
         dispatch(getPostByIdThunk(id))
         dispatch(getAllCommentsThunk())
-    }, [dispatch])
+    }, [dispatch, comment.length])
 
-    useEffect(() => {
-        dispatch(getPostByIdThunk(id))
-    }, [commentObj.length])
     const comments = post.comments
-    console.log(post, 'psotstststtsts');
-    console.log(comments, 'comments check');
+    // console.log(sessionUser, 'psotstststtsts');
+    // console.log(comments, 'comments check');
     return (
         <div className="whole-page-single">
             <div className="single-post-page">
@@ -60,15 +60,26 @@ const OnePost = () => {
                     <h3>Comments</h3>
                     {comments?.length >= 1 ? (
                         comments.map(comment => (
-                            <div className="individual-comments" key={comment.id}>
+                            <div className="individual-comments">
                                 <div>
                                     <div>
                                         {comment.user.username}
                                         {comment.text}
                                     </div>
-                                </div>
-                                <div>
-                                    {}
+                                    <div>
+                                        {sessionUser.id === comment.userId ? (
+                                            <OpenModalButton
+                                                buttonText='Edit'
+                                                modalComponent={<EditCommentModal id={comment.id} />}
+                                            />
+                                        ) : ''}
+                                        {sessionUser.id === comment.userId ? (
+                                            <OpenModalButton
+                                                buttonText='Delete'
+                                                modalComponent={<DeleteCommentModal id={comment.id} />}
+                                            />
+                                        ) : ''}
+                                    </div>
                                 </div>
                             </div>
 

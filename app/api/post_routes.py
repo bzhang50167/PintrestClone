@@ -43,7 +43,7 @@ def create_post():
 
         db.session.add(new_post)
         db.session.commit()
-        return jsonify(new_post)
+        return jsonify(new_post.to_dict())
     else:
         return 'Bad Data'
 

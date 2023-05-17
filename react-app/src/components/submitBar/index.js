@@ -19,6 +19,8 @@ const SubmitBar = (sessionUser) => {
             text: comment
         }
 
+        setComment('')
+
         await dispatch(createCommentThunk(info))
     }
     return (
