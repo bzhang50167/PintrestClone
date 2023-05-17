@@ -20,9 +20,12 @@ def get_post_by_id(id):
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def create_post():
+    print('in the route ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data,'+++++++++++++++++++++++++++++++++')
     if form.validate_on_submit():
+        print('GOT PASS VALIDATIONS <=========================')
         post_picture = form.data['image_url']
         post_picture.filename = get_unique_filename(post_picture.filename)
         upload = upload_file_to_s3(post_picture)

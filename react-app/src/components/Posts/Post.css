@@ -1,36 +1,47 @@
-.cards-on-main{
+.cards-on-main {
     width: 200px;
     height: 100%;
     border: 1px solid black;
 }
 
-.all-post-page{
+.all-post-page {
     display: flex;
     flex-wrap: wrap;
 }
 
-.individual-post{
+.options-dropdown{
+    position: relative;
+    z-index: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+.individual-post {
     display: flex;
     width: fit-content;
     /* border: 2px dotted red; */
     margin-left: 29px;
+    margin-bottom: 30px;
 }
 
-.image-border{
+.image-border {
     border-radius: 40px;
+    max-width: 300px;
 }
 
-.single-post-info{
+.single-post-info {
     margin-left: 50px;
 }
 
-.comment-bar{
+.comment-bar {
     display: flex;
     /* justify-content: end; */
     align-items: end;
 }
 
-.single-post-page{
+.single-post-page {
     display: flex;
     justify-content: center;
     border: 1px solid rgb(244, 244, 244);
@@ -40,11 +51,32 @@
     box-shadow: 10px 10px 10px rgb(238, 238, 238);
 }
 
-.whole-page-single{
+.whole-page-single {
     display: flex;
     justify-content: center;
 }
 
-.individual-comments{
+.individual-comments {
     display: flex;
+}
+
+.post-form {
+    display: flex;
+    position: relative;
+    border: .5px solid gray;
+    background-color: white;
+    padding: 100px;
+    top: 10px;
+    border-radius: 20px;
+}
+
+.form-page {
+    display: flex;
+    justify-content: center;
+    background-color: darkgray;
+}
+
+.text-inputs {
+    display: flexbox;
+    flex-direction: row;
 }

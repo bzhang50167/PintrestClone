@@ -8,3 +8,4 @@ class PostForm(FlaskForm):
     user_id = IntegerField('User Id', validators=[DataRequired()])
     text = StringField('Text')
     image_url = FileField('Image Url', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    title = StringField('Title')

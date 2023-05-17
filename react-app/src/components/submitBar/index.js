@@ -3,6 +3,7 @@ import './bar.css'
 import { AiFillSmile } from "react-icons/ai";
 import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useDispatch } from 'react-redux';
+import { createPostThunk } from '../../store/post';
 
 const SubmitBar = (sessionUser) => {
     const user = sessionUser.sessionUser
