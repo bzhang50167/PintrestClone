@@ -9,17 +9,14 @@ const EditCommentModal = (id) => {
     const [text, setText] = useState('')
     const commentId = +id.id
     const { closeModal } = useModal();
-
+    console.log(text,'is this a tuple?');
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
     }, [dispatch])
     // console.log(comment, 'comment');
     // console.log(commentId);
     const handleEdit = async (e) => {
-        const data = {
-            text
-        }
-        await dispatch(editCommentThunk(commentId, data))
+        await dispatch(editCommentThunk(commentId, text))
         closeModal()
     }
     return (

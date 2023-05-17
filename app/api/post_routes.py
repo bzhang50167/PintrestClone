@@ -59,8 +59,9 @@ def update_post(id):
     if form.validate_on_submit():
         post.text = form.data['text']
         post.title = form.data['title']
+        print(post.text, '<=====================')
         db.session.commit()
-        return jsonify(post)
+        return jsonify(post.to_dict())
     else:
         return 'Bad Data'
 

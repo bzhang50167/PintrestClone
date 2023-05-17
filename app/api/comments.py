@@ -44,10 +44,10 @@ def edit_comment(id):
     print(form.data, '<=========================')
     if form.validate_on_submit():
         print('PASSED VALIDATION <=====================')
-        comment.text = form.data['text'],
+        comment.text = form.data['text']
         print(comment.text, '~~~~~~~~~~~~~~~')
         db.session.commit()
-        return jsonify(comment)
+        return jsonify(comment.to_dict())
     else:
         return 'Bad Data'
 

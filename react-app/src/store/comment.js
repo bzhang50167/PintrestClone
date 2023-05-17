@@ -78,7 +78,9 @@ export const editCommentThunk = (id, data) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+            text:data
+        })
     })
 
     if (res.ok) {
@@ -88,7 +90,7 @@ export const editCommentThunk = (id, data) => async dispatch => {
 }
 
 export const deleteCommentThunk = (commentId) => async dispatch => {
-    
+
     const res = await fetch(`/comments/${commentId}/delete`, {
         method:'DELETE'
     })
