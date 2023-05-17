@@ -33,13 +33,15 @@ const OnePost = () => {
                     <button onClick={e => setShowMenu(!showMenu)}>
                         {<BsThreeDots />}
                     </button>
-                    <ul className={ulClassName}>
+                    <div
+                    className={ulClassName}
+                    onClick={e => setShowMenu(!showMenu)}>
                         <OpenModalButton
-                        buttonText='Edit'
-                        modalComponent={<EditPostModal />}
+                        buttonText='Edit Post'
+                        modalComponent={<EditPostModal id={id} />}
                         />
                         <OpenModalButton />
-                    </ul>
+                    </div>
                     <h2>{post.title}</h2>
                     <div>
                         {post.text}
@@ -47,7 +49,7 @@ const OnePost = () => {
                     <h3>Comments</h3>
                     {comments?.length >= 1 ? (
                         comments.map(comment => (
-                            <div className="individual-comments">
+                            <div className="individual-comments" key={comment.id}>
                                 <div>
                                     {comment.user.username}
                                 </div>

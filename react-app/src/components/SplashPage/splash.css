@@ -1,0 +1,22 @@
+.splash-image{
+    border-radius: 7%;
+    position: relative;
+    width: 10em;
+    height: 33vh;
+    object-fit: cover;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.splash-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: fit-content;
+}
+
+.splash-div{
+    width: 15%;
+    border: 1px solid black;
+    padding: 20px;
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllPostThunk } from "../../store/post";
+import './splash.css'
 
 const SplashPage = () => {
     const allPost = useSelector(state => state.post.allPost)
@@ -15,10 +16,10 @@ const SplashPage = () => {
 
     return(
         <div>
-            <div>
+            <div className="splash-box">
                 {posts?.map( post => (
-                    <div>
-                        <img src={post.imageUrl} />
+                    <div className="splash-div">
+                        <img className="splash-image" src={post.imageUrl} />
                     </div>
                 ))}
             </div>

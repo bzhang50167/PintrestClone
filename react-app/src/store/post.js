@@ -1,6 +1,7 @@
 const GET_ALL_POST = 'post/GET_ALL_POST'
 const GET_POST_BY_ID = 'post/GET_POST_BY_ID'
 const CREATE_POST = 'post/CREATE_POST'
+const EDIT_POST = 'post/EDIT_POST'
 
 const getAllPostAction = (data) => {
     return {
@@ -19,6 +20,13 @@ const getPostByIdAction = (data) => {
 const createPostAction = (data) => {
     return {
         type: CREATE_POST,
+        data
+    }
+}
+
+const editPostAction = (data) => {
+    return {
+        type: EDIT_POST,
         data
     }
 }
@@ -55,6 +63,23 @@ export const getPostByIdThunk = (id) => async dispatch => {
     }
 }
 
+export const editPostThunk = (id , formData) => async dispatch => {
+    const res = await fetch(`/posts/${id}/edit`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(editPostAction(data))
+    } else {
+        console.log('not working');
+    }
+}
+
 const initialState = { allPost:{} , onePost:{}}
 
 const postReducer = (state = initialState, action) => {
@@ -72,6 +97,11 @@ const postReducer = (state = initialState, action) => {
         case CREATE_POST:{
             const newState = {...state, allPost:{...state.allPost}}
             newState.allPost[action.data.id] = action.id
+            return newState
+        }
+        case EDIT_POST:{
+            const newState = {...state, allPost: {...state.allPost}, onePost:{}}
+            newState.onePost = action.data
             return newState
         }
         default:
