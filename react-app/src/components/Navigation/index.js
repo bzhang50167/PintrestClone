@@ -18,6 +18,11 @@ function Navigation({ isLoaded }) {
 				</NavLink>
 			</ul>
 			<ul>
+				<NavLink exact to='/posts/new'>
+					Create
+				</NavLink>
+			</ul>
+			<ul>
 				<NavLink exactly to='/home'>
 					Home
 				</NavLink>

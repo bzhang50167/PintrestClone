@@ -18,34 +18,36 @@ const OnePost = () => {
     console.log(post, 'psotstststtsts');
     console.log(comments, 'comments check');
     return (
-        <div className="single-post-page">
-            <div>
-                <img src={post.imageUrl} />
-            </div>
-            <div>
-                <h2>{post.title}</h2>
+        <div className="whole-page-single">
+            <div className="single-post-page">
                 <div>
-                    {post.text}
+                    <img className="image-border" src={post.imageUrl} />
                 </div>
-                <h3>Comments</h3>
-                {comments?.length >= 1 ? (
-                    comments.map(comment => (
-                        <div className="individual-comments">
-                            <div>
-                                {comment.user.username}
+                <div className="single-post-info">
+                    <h2>{post.title}</h2>
+                    <div>
+                        {post.text}
+                    </div>
+                    <h3>Comments</h3>
+                    {comments?.length >= 1 ? (
+                        comments.map(comment => (
+                            <div className="individual-comments">
+                                <div>
+                                    {comment.user.username}
+                                </div>
+                                <div>
+                                    {comment.text}
+                                </div>
                             </div>
-                            <div>
-                                {comment.text}
-                            </div>
-                        </div>
 
-                    ))
-                ) : 'No comments yet! Add one to start the conversation.'}
+                        ))
+                    ) : 'No comments yet! Add one to start the conversation.'}
 
-                <div>
-                    <SubmitBar sessionUser={sessionUser} />
+                    <div className="comment-bar">
+                        <SubmitBar sessionUser={sessionUser} />
+                    </div>
+
                 </div>
-
             </div>
         </div>
     )

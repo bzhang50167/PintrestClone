@@ -28,6 +28,5 @@ class Comment(db.Model):
             'postId': self.post_id,
             'userId': self.user_id,
             'text': self.text,
-            'rating': self.rating,
             'user': self.users.to_dict()
         }

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import AllPost from "./components/Posts/AllPost";
 import OnePost from "./components/Posts/PostShow";
+import PostForm from "./components/Posts/PostForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path='/home'>
             <AllPost />
+          </Route>
+          <Route exact path='/posts/new'>
+            <PostForm />
           </Route>
         </Switch>
       )}

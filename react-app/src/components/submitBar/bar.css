@@ -3,3 +3,27 @@
     height: 50px;
     border-radius: 50%;
 }
+
+.bar{
+    display: flex;
+    align-items: center;
+}
+
+.inside-bar{
+    display: flex;
+    align-items: center;
+    border: 1px solid darkgray;
+    padding: 10px 5px;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+input{
+    border: none;
+    background-color: transparent;
+}
+
+button{
+    border: none;
+    background-color: transparent;
+}
