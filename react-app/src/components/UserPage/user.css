@@ -1,0 +1,47 @@
+.page{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-left: 58px;
+}
+
+.nameofuser{
+    display: flex;
+    font-size: xx-large;
+    /* margin-left: 15px; */
+    justify-content: center;
+}
+
+.username {
+    display: flex;
+    color: rgb(141, 137, 137);
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.editbutton{
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: gray;
+    margin-left: 18px;
+}
+
+.button{
+    font-weight: bold;
+    font-size: large;
+    background-color: transparent;
+}
+
+.outeredit{
+    display: flex;
+    justify-content: center;
+}

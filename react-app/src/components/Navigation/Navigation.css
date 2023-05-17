@@ -3,7 +3,7 @@
   position: absolute;
   top: 50px;
   right: 10px;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .hidden {

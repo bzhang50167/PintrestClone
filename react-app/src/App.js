@@ -9,6 +9,7 @@ import SplashPage from "./components/SplashPage";
 import AllPost from "./components/Posts/AllPost";
 import OnePost from "./components/Posts/PostShow";
 import PostForm from "./components/Posts/PostForm";
+import UserPage from "./components/UserPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path='/posts/new'>
             <PostForm />
+          </Route>
+          <Route  path='/user/:id'>
+            <UserPage />
           </Route>
         </Switch>
       )}

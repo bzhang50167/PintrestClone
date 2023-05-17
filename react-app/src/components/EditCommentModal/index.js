@@ -12,7 +12,7 @@ const EditCommentModal = (id) => {
     console.log(text,'is this a tuple?');
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
-    }, [dispatch])
+    }, [dispatch, commentId])
     // console.log(comment, 'comment');
     // console.log(commentId);
     const handleEdit = async (e) => {

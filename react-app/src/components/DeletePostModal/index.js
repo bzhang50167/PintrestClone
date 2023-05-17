@@ -1,8 +1,8 @@
 
 import { useDispatch } from "react-redux"
-import { deletePostThunk } from "../../store/post"
+import { deletePostThunk } from "../../../store/post"
 import { useHistory } from "react-router-dom"
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 
 const DeletePostModal = (id) => {
     const postId = +id.id
