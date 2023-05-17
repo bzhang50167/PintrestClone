@@ -8,11 +8,13 @@ import EditPostModal from "../EditPostModal";
 import OpenModalButton from "../OpenModalButton";
 import { BsThreeDots } from 'react-icons/bs'
 import DeletePostModal from "../DeletePostModal";
+import { getAllCommentsThunk } from "../../store/comment";
 
 
 const OnePost = () => {
     const post = useSelector(state => state.post.onePost)
     const sessionUser = useSelector(state => state.session.user)
+    const commentObj = useSelector(state => state.comments.allComments)
     const [showMenu, setShowMenu] = useState(false)
     const dispatch = useDispatch()
     const { id } = useParams()
@@ -20,7 +22,12 @@ const OnePost = () => {
     console.log(id);
     useEffect(() => {
         dispatch(getPostByIdThunk(id))
+        dispatch(getAllCommentsThunk())
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getPostByIdThunk(id))
+    }, [commentObj.length])
     const comments = post.comments
     console.log(post, 'psotstststtsts');
     console.log(comments, 'comments check');
@@ -35,15 +42,15 @@ const OnePost = () => {
                         {<BsThreeDots />}
                     </button>
                     <div
-                    className={ulClassName}
-                    onClick={e => setShowMenu(!showMenu)}>
+                        className={ulClassName}
+                        onClick={e => setShowMenu(!showMenu)}>
                         <OpenModalButton
-                        buttonText='Edit Post'
-                        modalComponent={<EditPostModal id={id} />}
+                            buttonText='Edit Post'
+                            modalComponent={<EditPostModal id={id} />}
                         />
                         <OpenModalButton
-                        buttonText='Delete Post'
-                        modalComponent={<DeletePostModal id={id} />}
+                            buttonText='Delete Post'
+                            modalComponent={<DeletePostModal id={id} />}
                         />
                     </div>
                     <h2>{post.title}</h2>
@@ -55,10 +62,13 @@ const OnePost = () => {
                         comments.map(comment => (
                             <div className="individual-comments" key={comment.id}>
                                 <div>
-                                    {comment.user.username}
+                                    <div>
+                                        {comment.user.username}
+                                        {comment.text}
+                                    </div>
                                 </div>
                                 <div>
-                                    {comment.text}
+                                    {}
                                 </div>
                             </div>
 

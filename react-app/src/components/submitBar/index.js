@@ -4,6 +4,7 @@ import { AiFillSmile } from "react-icons/ai";
 import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createPostThunk } from '../../store/post';
+import { createCommentThunk } from '../../store/comment';
 
 const SubmitBar = (sessionUser) => {
     const user = sessionUser.sessionUser
@@ -11,14 +12,14 @@ const SubmitBar = (sessionUser) => {
     const [comment, setComment] = useState('')
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const info = {
             post_id: id,
             user_id: user.id,
             text: comment
         }
 
-        dispatch()
+        await dispatch(createCommentThunk(info))
     }
     return (
         <div>
