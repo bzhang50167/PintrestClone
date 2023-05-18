@@ -7,7 +7,7 @@
     border-radius: 50%;
     width: 200px;
     height: 200px;
-    margin-left: 58px;
+    margin-left: 41px;
 }
 
 .nameofuser{
@@ -44,4 +44,21 @@
 .outeredit{
     display: flex;
     justify-content: center;
+}
+
+.post-board{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.button-button{
+    border-bottom: 2px solid black;
+    margin-left: 10px;
+    font-size: large;
+}
+
+.button-button:hover{
+    background-color: darkgray;
+    border-radius: 20px;
 }

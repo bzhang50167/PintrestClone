@@ -26,6 +26,6 @@ class Group(db.Model):
         return{
             'id': self.id,
             'name': self.name,
-            'postId': self.post_id,
-            'userId': self.user_id
+            'userId': self.user_id,
+            'groupPost': [post.to_dict() for post in self.group_posts]
         }

@@ -127,8 +127,9 @@ const postReducer = (state = initialState, action) => {
             delete newState.allPost[action.postId]
             return newState
         }
-        default:
+        default:{
             return state
+        }
     }
 }
 

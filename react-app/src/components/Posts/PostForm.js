@@ -15,7 +15,6 @@ const PostForm = () => {
 
     const handleAddImage = (e) => {
         setFile(e.target.files[0])
-
     }
 
     const handleSubmit = async() => {
@@ -27,8 +26,8 @@ const PostForm = () => {
         formData.append('image_url',file)
 
         console.log(formData);
-        await dispatch(createPostThunk(formData))
         history.push('/home')
+        await dispatch(createPostThunk(formData))
     }
 
     return (

@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux"
-import './user.css'
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min"
+import OpenModalButton from "../OpenModalButton"
+import './user.css'
+import { useState } from "react"
 
 const UserPage = () => {
     const user = useSelector(state => state.session.user)
     const { id } = useParams()
-
-    console.log(user, 'user');
-    console.log(id, 'param id');
+    const [classname, setClassname] = useState('')
+    console.log(classname ,'is it changing');
+    // console.log(user, 'user');
+    // console.log(id, 'param id');
     return (
         <div className="page">
             <div className="page">
@@ -23,19 +26,20 @@ const UserPage = () => {
                         <div className="outeredit">
                             <div className="editbutton">
                                 <button className="button">
-                                    Edit Profile
+                                    <OpenModalButton
+                                        buttonText='Edit Profile'
+                                    />
                                 </button>
                             </div>
                             <div className="editbutton">
                                 <button className="button">
-                                    Create Board
+                                    <OpenModalButton
+                                        buttonText='Create Board'
+                                    />
                                 </button>
                             </div>
                         </div>
                     ) : ''}
-                    <div>
-
-                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ group_routes = Blueprint('groups', __name__)
 def get_all_group():
     groups = Group.query.all()
     group_list = [group.to_dict() for group in groups]
+    print(group_list, '<============================')
     return jsonify(group_list)
 
 @group_routes.route('/<int:id>')
@@ -66,4 +67,3 @@ def delete_group(id):
         return jsonify({
             'message':'Group Deleted Successfully'
         })
-

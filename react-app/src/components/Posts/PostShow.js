@@ -7,7 +7,7 @@ import SubmitBar from "../submitBar";
 import EditPostModal from "../EditPostModal";
 import OpenModalButton from "../OpenModalButton";
 import { BsThreeDots } from 'react-icons/bs'
-import DeletePostModal from "../Modals/DeletePostModal";
+import DeletePostModal from "../DeletePostModal";
 import { getAllCommentsThunk } from "../../store/comment";
 import EditCommentModal from "../EditCommentModal";
 import DeleteCommentModal from "../DeleteCommentModal";

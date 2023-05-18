@@ -1,0 +1,34 @@
+.whole-page{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.other-page{
+    display: flex;
+    margin: 19px;
+    border-radius: 10px;
+}
+
+.mainpic{
+    height: 240px;
+    width: 120px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.otherpic{
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.mainimg{
+    display: flex;
+}
+
+.otherimg{
+    display: flex;
+    flex-direction: column;
+}

@@ -10,6 +10,8 @@ import AllPost from "./components/Posts/AllPost";
 import OnePost from "./components/Posts/PostShow";
 import PostForm from "./components/Posts/PostForm";
 import UserPage from "./components/UserPage";
+import UserPost from "./components/Posts/UserPost";
+import PostorBoard from "./components/UserPage/PostorBoard";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,10 @@ function App() {
           </Route>
           <Route  path='/user/:id'>
             <UserPage />
+            <PostorBoard />
+          </Route>
+          <Route path='/test/test'>
+            <UserPost />
           </Route>
         </Switch>
       )}
