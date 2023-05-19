@@ -4,14 +4,41 @@
     border: 1px solid black;
     overflow: hidden;
     object-fit: cover;
+    border-radius: 10px;
+}
+
+.individual-post:hover{
+    filter: brightness(0.4);
+    cursor: pointer;
+    scale: 1.04;
 }
 
 .individual-post {
     position: relative;
     width: fit-content;
-    border: 2px dotted red;
+    /* border: 2px dotted red; */
     margin-left: 2px;
     margin-top: 30px;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    border-radius: 10px;
+}
+
+.board-button {
+    position: absolute;
+    top: 10%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.7s;
+    border: 1px black solid;
+    background-color: rgb(255, 0, 0);
+    border-radius: 20px;
+}
+
+.individual-post:hover .board-button {
+    opacity: 1;
+    filter: brightness(1.2);
+    cursor: alias;
 }
 
 .all-post-page {
@@ -47,17 +74,20 @@
 
 .image-border {
     border-radius: 40px;
-    max-width: 300px;
+    max-width: 30rem;
 }
 
 .single-post-info {
     margin-left: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .comment-bar {
     display: flex;
     /* justify-content: end; */
     align-items: end;
+    margin-top: 40px;
 }
 
 .single-post-page {
@@ -67,7 +97,8 @@
     width: fit-content;
     padding: 50px;
     border-radius: 40px;
-    box-shadow: 10px 10px 10px rgb(238, 238, 238);
+    box-shadow: 10px 10px 10px rgba(238, 238, 238, 0.537);
+    background-color: rgba(250, 235, 215, 0.329);
 }
 
 .whole-page-single {
@@ -83,7 +114,7 @@
     display: flex;
     position: relative;
     border: .5px solid gray;
-    background-color: white;
+    background-color: rgb(182, 173, 173);
     padding: 100px;
     top: 10px;
     border-radius: 20px;
@@ -92,7 +123,6 @@
 .form-page {
     display: flex;
     justify-content: center;
-    background-color: darkgray;
 }
 
 .text-inputs {

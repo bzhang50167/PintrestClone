@@ -1,7 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-const GET_ALL_USER = 'session/GET_ALL_USER'
+const GET_ALL_USER = 'session/GET_ALL_USER';
+const EDIT_USER = 'session/EDIT_USER'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -15,6 +16,13 @@ const removeUser = () => ({
 const getAllUserAction = (data) => {
 	return {
 		type: GET_ALL_USER,
+		data
+	}
+}
+
+const editUserAction = (data) => {
+	return {
+		type: EDIT_USER,
 		data
 	}
 }
@@ -113,6 +121,18 @@ export const getAllUserThunk = () => async dispatch => {
 	}
 }
 
+export const editUserThunk = (userId, formData) => async dispatch => {
+	const res = await fetch(`/api/users/${userId}`, {
+		method: 'PUT',
+		body: formData
+	})
+
+	if(res.ok){
+		const data = await res.json()
+		dispatch(editUserAction(data))
+	}
+}
+
 const initialState = { user: null, allUser: {} };
 
 export default function reducer(state = initialState, action) {
@@ -125,6 +145,11 @@ export default function reducer(state = initialState, action) {
 			const newState = {...state, user: {...state.user}, allUser:{...state.allUser}}
 			console.log(action.data.users, 'action');
 			action.data.users.forEach(user => newState.allUser[user.id] = user)
+			return newState
+		}
+		case EDIT_USER: {
+			const newState = {...state, user:{...state.user}, allUser:{...state.allUser}}
+			newState.user[action.data.id] = action.data
 			return newState
 		}
 		default:

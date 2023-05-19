@@ -6,3 +6,4 @@ from .post_form import PostForm
 from .edit_post_form import EditPostForm
 from .edit_comment_form import EditCommentForm
 from .add_image_form import AddImageForm
+from .edit_user_form import EditUserForm

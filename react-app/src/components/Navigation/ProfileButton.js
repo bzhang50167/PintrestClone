@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import { login, logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -32,9 +32,16 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const handleDemo = async(e) => {
+    e.preventDefault()
+    await dispatch(login('demo@aa.io','password'))
+    history.push('/home')
+  }
+
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/')
   };
   // console.log(user);
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -43,7 +50,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <FaUserCircle />
+        <FaUserCircle className="user-icon" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -70,6 +77,9 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <button onClick={handleDemo}>
+              Demo User
+            </button>
           </>
         )}
       </ul>

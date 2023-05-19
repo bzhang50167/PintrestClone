@@ -5,6 +5,7 @@ import './user.css'
 import { useEffect, useState } from "react"
 import { getAllUserThunk } from "../../store/session"
 import BoardForm from "../Boards/BoardForm"
+import EditUserModal from "../EditUserModal"
 
 const UserPage = () => {
     const user = useSelector(state => state.session.allUser)
@@ -39,6 +40,7 @@ const UserPage = () => {
                             <div className="editbutton">
                                     <OpenModalButton
                                         buttonText='Edit Profile'
+                                        modalComponent={<EditUserModal id={id}/> }
                                     />
                             </div>
                             <div className="editbutton">

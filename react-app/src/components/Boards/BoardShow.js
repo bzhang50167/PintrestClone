@@ -32,14 +32,16 @@ const BoardShow = () => {
                     {board.name}
                 </h1>
             </div>
-            <div>
+            <div className="whole-board-show">
                 {board.groupPost.map(post => (
-                    <div>
+                    <div className="board-show">
                         <div onClick={e => history.push(`/post/${post.id}`)}>
                             <img className="cards-on-main" src={post.imageUrl} />
                         </div>
                         <div>
-                            <button onClick={e => handleRemove(post.id)}>
+                            <button
+                            className="board-button"
+                            onClick={e => handleRemove(post.id)}>
                                 remove
                             </button>
                         </div>
