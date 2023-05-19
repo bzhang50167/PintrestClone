@@ -12,6 +12,7 @@ import PostForm from "./components/Posts/PostForm";
 import UserPage from "./components/UserPage";
 import UserPost from "./components/Posts/UserPost";
 import PostorBoard from "./components/UserPage/PostorBoard";
+import BoardShow from "./components/Boards/BoardShow";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,12 +44,12 @@ function App() {
           <Route exact path='/posts/new'>
             <PostForm />
           </Route>
-          <Route  path='/user/:id'>
+          <Route path='/user/:id'>
             <UserPage />
             <PostorBoard />
           </Route>
-          <Route path='/test/test'>
-            <UserPost />
+          <Route path='/board/:id'>
+            <BoardShow />
           </Route>
         </Switch>
       )}

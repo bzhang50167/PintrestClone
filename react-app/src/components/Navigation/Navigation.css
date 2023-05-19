@@ -4,6 +4,7 @@
   top: 50px;
   right: 10px;
   flex-direction: column;
+  z-index: 400;
 }
 
 .hidden {

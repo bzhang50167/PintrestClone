@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom";
 import { getPostByIdThunk } from "../../store/post";
 import './Post.css'
 import SubmitBar from "../submitBar";
@@ -11,6 +11,7 @@ import DeletePostModal from "../DeletePostModal";
 import { getAllCommentsThunk } from "../../store/comment";
 import EditCommentModal from "../EditCommentModal";
 import DeleteCommentModal from "../DeleteCommentModal";
+import AddtoBoard from "../Boards/AddtoBoardForm";
 
 
 const OnePost = () => {
@@ -22,7 +23,7 @@ const OnePost = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const ulClassName = "options-dropdown" + (showMenu ? "" : " hidden");
-    // console.log(id);
+    console.log(post);
     useEffect(() => {
         dispatch(getPostByIdThunk(id))
         dispatch(getAllCommentsThunk())
@@ -52,6 +53,10 @@ const OnePost = () => {
                             buttonText='Delete Post'
                             modalComponent={<DeletePostModal id={id} />}
                         />
+                        <OpenModalButton
+                            buttonText='Add to Board'
+                            modalComponent={<AddtoBoard id={post.id} />}
+                        />
                     </div>
                     <h2>{post.title}</h2>
                     <div>
@@ -63,7 +68,10 @@ const OnePost = () => {
                             <div className="individual-comments">
                                 <div>
                                     <div>
-                                        {comment.user.username}
+                                        <Link to={`/user/${comment.userId}`}>
+                                            {comment.user.username}
+                                        </Link>
+                                        {' '}
                                         {comment.text}
                                     </div>
                                     <div>

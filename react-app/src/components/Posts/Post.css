@@ -1,14 +1,33 @@
 .cards-on-main {
-    width: 200px;
-    height: 100%;
+    width: 330px;
+    height: 50%;
     border: 1px solid black;
     overflow: hidden;
     object-fit: cover;
 }
 
+.individual-post {
+    position: relative;
+    width: fit-content;
+    border: 2px dotted red;
+    margin-left: 2px;
+    margin-top: 30px;
+}
+
 .all-post-page {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.otherstuff{
+    width: fit-content;
+}
+.work-now {
+    /* width: fit-content; */
+    margin-top: 30px;
+    /* height: fit-content; */
 }
 
 .options-dropdown{
@@ -24,15 +43,6 @@
 
 .hidden {
     display: none;
-}
-
-.individual-post {
-    display: flex;
-    width: fit-content;
-    /* border: 2px dotted red; */
-    margin-left: 29px;
-    margin-bottom: 30px;
-    margin-top: 20px;
 }
 
 .image-border {

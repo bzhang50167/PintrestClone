@@ -1,9 +1,13 @@
 import { useState } from "react"
 import GetAllBoard from "../Boards/GetAllBoards"
 import UserPost from "../Posts/UserPost"
+import { useParams } from "react-router-dom/cjs/react-router-dom"
 
 const PostorBoard = () => {
     const [classname, setClassname] = useState('')
+    const { id } = useParams()
+
+    console.log(typeof(+id));
 
     return (
         <div>
@@ -14,10 +18,10 @@ const PostorBoard = () => {
                 </div>
             </div>
             {classname === 'showBoard' ? (
-                <GetAllBoard />
+                <GetAllBoard id={id}/>
             ) : ''}
             {classname === 'showPosts' ? (
-                <UserPost />
+                <UserPost id={id} />
             ) : ''}
         </div>
     )
