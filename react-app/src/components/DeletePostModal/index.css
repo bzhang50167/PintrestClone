@@ -1,0 +1,12 @@
+.deletemodal{
+    padding: 20px;
+}
+
+.seperate{
+    display: flex;
+    background-color: red;
+}
+
+.delete-button{
+    margin-right: 29px;
+}

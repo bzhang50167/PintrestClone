@@ -11,13 +11,11 @@ const AddtoBoard = (id) => {
     const { closeModal } = useModal();
     const history = useHistory()
     const [boardId, setBoardId] = useState('')
-    console.log(id.id,'user~~~~~~~~');
     useEffect(() => {
         dispatch(getAllBoardsThunk())
     }, [dispatch])
     const boardArr = Object.values(allBoard)
     const userBoard = boardArr.filter(board => board.userId === user.id)
-    console.log(boardId,'checking');
     const handleAdd = (e) => {
         const info = {
             group_id: boardId,
@@ -26,14 +24,25 @@ const AddtoBoard = (id) => {
 
         dispatch(addImageThunk(info))
         closeModal()
-        history.push('/')
+        history.push(`/user/${user.id}`)
     }
+
+    const handleClick = (board) => {
+        setBoardId(board.id);
+    };
+
     return (
-        <div>
-            Add to your board
+        <div >
+            <h1>
+                Add to your board
+            </h1>
             <div>
                 {userBoard.map(board => (
-                    <div onClick={e => setBoardId(board.id)}>
+                    <div
+                        className={`board-names ${board.id === boardId ? "active" : ""}`}
+                        onClick={() => handleClick(board)}
+                        key={board.id}
+                    >
                         {board.name}
                     </div>
                 ))}

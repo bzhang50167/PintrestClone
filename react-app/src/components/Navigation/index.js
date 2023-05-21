@@ -32,9 +32,12 @@ function Navigation({ isLoaded }) {
 				</NavLink>
 			</ul>
 			<ul>
-				<NavLink exact to='/posts/new'>
-					Create
-				</NavLink>
+				{sessionUser &&
+					<NavLink exact to='/posts/new'
+						className='create-link'>
+						Create
+					</NavLink>
+				}
 			</ul>
 			<ul>
 				<form onSubmit={handleSubmit}>
@@ -45,13 +48,12 @@ function Navigation({ isLoaded }) {
 						placeholder="Search..."
 						className="search-input"
 					/>
-					<button type="submit" className="search-button">Search</button>
 				</form>
 			</ul>
 			<ul>
-				<NavLink exactly to='/home'>
-					Home
-				</NavLink>
+				<span className='invis'>
+					1
+				</span>
 			</ul>
 			{isLoaded && (
 				<ul>

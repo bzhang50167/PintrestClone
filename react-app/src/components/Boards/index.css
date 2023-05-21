@@ -73,3 +73,22 @@
     /* filter: brightness(1.2); */
     cursor: alias;
 }
+
+.board-names{
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.board-names:hover{
+    cursor: pointer;
+}
+
+.board-names.active{
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -34,9 +34,11 @@ const SubmitBar = (sessionUser) => {
                         placeholder='Add a comment'
                         onChange={e => setComment(e.target.value)}
                     />
-                    <button type='submit' onClick={handleSubmit}>
-                        <AiFillSmile />
-                    </button>
+                    <div type='submit' onClick={handleSubmit}>
+                        <spam>
+                            <AiFillSmile className='submit-bar-div' />
+                        </spam>
+                    </div>
                 </div>
             </div>
         </div>

@@ -23,7 +23,8 @@ const OnePost = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const ulClassName = "options-dropdown" + (showMenu ? "" : " hidden");
-    console.log(post);
+    // console.log(post, 'post');
+    // console.log(sessionUser, 'user');
     useEffect(() => {
         dispatch(getPostByIdThunk(id))
         dispatch(getAllCommentsThunk())
@@ -45,14 +46,18 @@ const OnePost = () => {
                     <div
                         className={ulClassName}
                         onClick={e => setShowMenu(!showMenu)}>
-                        <OpenModalButton
-                            buttonText='Edit Post'
-                            modalComponent={<EditPostModal id={id} />}
-                        />
-                        <OpenModalButton
-                            buttonText='Delete Post'
-                            modalComponent={<DeletePostModal id={id} />}
-                        />
+                        {sessionUser?.id === post.userId &&
+                            <OpenModalButton
+                                buttonText='Edit Post'
+                                modalComponent={<EditPostModal id={id} />}
+                            />
+                        }
+                        {sessionUser?.id === post.userId &&
+                            <OpenModalButton
+                                buttonText='Delete Post'
+                                modalComponent={<DeletePostModal id={id} />}
+                            />
+                        }
                         <OpenModalButton
                             buttonText='Add to Board'
                             modalComponent={<AddtoBoard id={post.id} />}
@@ -75,13 +80,13 @@ const OnePost = () => {
                                         {comment.text}
                                     </div>
                                     <div>
-                                        {sessionUser.id === comment.userId ? (
+                                        {sessionUser?.id === comment.userId ? (
                                             <OpenModalButton
                                                 buttonText='Edit'
                                                 modalComponent={<EditCommentModal id={comment.id} />}
                                             />
                                         ) : ''}
-                                        {sessionUser.id === comment.userId ? (
+                                        {sessionUser?.id === comment.userId ? (
                                             <OpenModalButton
                                                 buttonText='Delete'
                                                 modalComponent={<DeleteCommentModal id={comment.id} />}
@@ -94,8 +99,11 @@ const OnePost = () => {
                         ))
                     ) : 'No comments yet! Add one to start the conversation.'}
 
+
                     <div className="comment-bar">
-                        <SubmitBar sessionUser={sessionUser} />
+                        {sessionUser &&
+                            <SubmitBar sessionUser={sessionUser} />
+                        }
                     </div>
 
                 </div>

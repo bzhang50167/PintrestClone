@@ -2,12 +2,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { editPostThunk, getPostByIdThunk } from "../../store/post"
 import { AiFillSmile } from "react-icons/ai";
+import './editmodal.css'
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useModal } from "../../context/Modal";
 
 const EditPostModal = (id) => {
     // console.log(postId);
     const post = useSelector(state => state.post.onePost)
-    // const user = useSelector(state => state.session.user)
+    const { closeModal } = useModal();
     const dispatch = useDispatch()
+    const history = useHistory()
     const [text, setText] = useState(post.text)
     const [title, setTitle] = useState(post.title)
     const postId = +id.id
@@ -17,14 +21,17 @@ const EditPostModal = (id) => {
     }, [dispatch, postId])
 
 
-    const handleSubmit = async() => {
+    const handleSubmit = async () => {
 
         const formData = {
             text,
             title
         }
 
-        await dispatch(editPostThunk(postId ,formData))
+        await dispatch(editPostThunk(postId, formData))
+        history.push(`/post/${+id.id}`)
+        closeModal()
+
     }
 
     return (
@@ -35,25 +42,32 @@ const EditPostModal = (id) => {
                 </div>
                 <div className="text-inputs">
                     <div>
-                        <input
-                            type="text"
-                            value={title}
-                            placeholder='Title Goes Here'
-                            onChange={e => setTitle(e.target.value)}
-                        />
+                        <label>
+
+                            <input
+                                type="text"
+                                value={title}
+                                placeholder='Title Goes Here'
+                                onChange={e => setTitle(e.target.value)}
+                                className="title-input"
+                            />
+                        </label>
                     </div>
-                    <div>
-                        <input
-                            type="text"
+                    <div className="text-icon">
+                        <textarea
+                            // type="text"
                             value={text}
+                            rows={6}
+                            cols={30}
                             placeholder="Tell everyone what your pin is about"
                             onChange={e => setText(e.target.value)}
                         />
-                        <button
+                        <div
                             type="submit"
-                            onClick={handleSubmit}>
-                            <AiFillSmile />
-                        </button>
+                            onClick={handleSubmit}
+                        >
+                            <AiFillSmile className="smile-icon" />
+                        </div>
                     </div>
                 </div>
             </form>

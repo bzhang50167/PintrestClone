@@ -17,15 +17,27 @@ const DeletePostModal = (id) => {
         // dispatch(getAllPostThunk())
         history.push('/home')
     }
+
+    const close = () => {
+        closeModal()
+    }
     return (
-        <div>
+        <div className="deletemodal">
             <h1>
-                Are you sure you want to delete this post
+                Are you sure you want to delete this post?
             </h1>
-            <button
-                onClick={handleDelete}>
-                Delete
-            </button>
+            <div className="seperate">
+                <button
+                    className="delete-button"
+                    onClick={handleDelete}>
+                    Delete
+                </button>
+                <button
+                    className="close-button"
+                    onClick={close}>
+                    No
+                </button>
+            </div>
         </div>
     )
 }

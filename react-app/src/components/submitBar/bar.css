@@ -24,7 +24,15 @@ input{
     background-color: transparent;
 }
 
-button{
+.submit-bar-div{
     border: none;
     background-color: transparent;
+    position: relative;
+    top:1px;
+    color: white;
+}
+
+.submit-bar-div:hover{
+    cursor: pointer;
+    color: purple;
 }
