@@ -1,28 +1,40 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getOneBoardThunk, removePostThunk } from "../../store/boards"
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import RemoveFromBoard from "./RemoveFromBoard"
+import DeleteBoardModal from "./DeleteBoardModal"
 
 const BoardShow = () => {
     const board = useSelector(state => state.boards.oneBoard)
-    const render = useSelector(state => state.boards.oneBoard.groupPost)
+    // const render = useSelector(state => state.boards.oneBoard.groupPost)
+    // const renedrL = Object.values(render)
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
+    const [postLength, setPostLength] = useState(0)
 
     const handleRemove = (postId) => {
-        dispatch(removePostThunk(postId,board.id))
+        dispatch(removePostThunk(postId, board.id))
+        // dispatch(getOneBoardThunk())
     }
+
+    console.log(board.groupPost?.length);
 
     useEffect(() => {
         dispatch(getOneBoardThunk(id))
-    }, [dispatch,render?.length])
+        setPostLength(board.groupPost?.length)
+    }, [dispatch, board.groupPost?.length])
 
     if (!board.groupPost) {
         return null
     }
+
+    if (board.groupPost.length !== postLength) {
+        dispatch(getOneBoardThunk(id))
+    }
+
 
 
     return (
@@ -30,6 +42,12 @@ const BoardShow = () => {
             <div>
                 <h1>
                     {board.name}
+                    <span>
+                    <OpenModalButton
+                        buttonText='Delete Group'
+                        modalComponent={<DeleteBoardModal id={id} />}
+                        />
+                        </span>
                 </h1>
             </div>
             <div className="whole-board-show">
@@ -40,8 +58,8 @@ const BoardShow = () => {
                         </div>
                         <div>
                             <button
-                            className="board-button"
-                            onClick={e => handleRemove(post.id)}>
+                                className="board-button"
+                                onClick={e => handleRemove(post.id)}>
                                 remove
                             </button>
                         </div>

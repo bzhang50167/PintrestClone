@@ -1,6 +1,7 @@
 const GET_ALL_BOARDS = 'boards/GET_ALL_BOARDS'
 const GET_ONE_BOARD = 'boards/GET_ONE_BOARD'
 const CREATE_BOARD_NAME = 'boards/CREATE_BOARD_NAME'
+const DELETE_BOARD = 'boards/DELETE_BOARD'
 
 const getAllBoardsAction = (data) => {
     return {
@@ -23,6 +24,12 @@ const createBoardNameAction = (data) => {
     }
 }
 
+const deleteBoardAction = (boardId) => {
+    return {
+        type: DELETE_BOARD,
+        boardId
+    }
+}
 
 export const getAllBoardsThunk = () => async dispatch => {
     const res = await fetch('/groups/')
@@ -79,9 +86,20 @@ export const removePostThunk = (post_id, board_id) => async dispatch => {
     })
 
     if (res.ok){
-        console.log('it working');
+        const data = await res.json()
+        dispatch(getOneBoardAction(data))
     } else {
         console.log('it broken');
+    }
+}
+
+export const deleteBoardThunk = (boardId) => async dispatch => {
+    const res = await fetch (`/groups/${boardId}/delete`,{
+        method: 'DELETE'
+    })
+
+    if(res.ok){
+        dispatch(deleteBoardAction(boardId))
     }
 }
 
@@ -103,6 +121,11 @@ const boardReducer = (state = initalState, action) => {
         case CREATE_BOARD_NAME: {
             const newState = {...state, allBoards:{...state.allBoards}}
             newState.allBoards[action.data.id] = action.data
+            return newState
+        }
+        case DELETE_BOARD: {
+            const newState = {...state, allBoards:{...state.allBoards}}
+            delete newState.allBoards[action.boardId]
             return newState
         }
         default:{

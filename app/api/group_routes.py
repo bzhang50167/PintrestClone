@@ -78,9 +78,7 @@ def remove_post_in_board(group_id,post_id):
     group.group_posts = [posts for posts in group.group_posts if posts.id != post_id]
     db.session.commit()
 
-    return jsonify({
-        'messge': f'{group.group_posts} has been updated'
-    })
+    return jsonify(group.to_dict())
 
 @group_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllPostThunk } from "../../store/post";
 import './Post.css'
@@ -7,21 +7,25 @@ import Masonry from "react-masonry-css";
 
 const AllPost = () => {
     const allPost = useSelector(state => state.post.allPost)
+    const deletePost = useSelector(state => state.post.delete)
     const posts = Object.values(allPost)
+    // const deleted = Object.values(deletePost)
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(allPost);
-    console.log(posts, 'posts');
+    // const [postLength, setPostLength] = useState(0)
+    console.log(posts.length);
+    // console.log(postLength);
 
     useEffect(() => {
         dispatch(getAllPostThunk())
-    }, [dispatch, allPost.length])
+    }, [dispatch, posts.length])
+
 
     const breakpointColumnsObj = {
-        default: 4, // number of columns by default
-        1200: 3, // number of columns for screens >= 1200px
-        992: 2, // number of columns for screens >= 992px
-        768: 1 // number of columns for screens >= 768px
+        default: 4,
+        1200: 3,
+        992: 2,
+        768: 1
     };
 
     return (

@@ -1,6 +1,7 @@
 .whole-page{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 
@@ -8,6 +9,13 @@
     display: flex;
     margin: 19px;
     border-radius: 10px;
+    box-shadow: 10px 10px 10px darkgray;
+}
+
+.other-page:hover {
+    filter: brightness(0.7);
+    scale: 1.02;
+    cursor: pointer;
 }
 
 .mainpic{

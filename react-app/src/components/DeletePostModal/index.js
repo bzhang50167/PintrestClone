@@ -14,6 +14,7 @@ const DeletePostModal = (id) => {
     const handleDelete = (e) => {
         dispatch(deletePostThunk(postId))
         closeModal()
+        // dispatch(getAllPostThunk())
         history.push('/home')
     }
     return (

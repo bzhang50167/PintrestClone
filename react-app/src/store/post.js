@@ -98,7 +98,7 @@ export const editPostThunk = (id , formData) => async dispatch => {
     }
 }
 
-const initialState = { allPost:{} , onePost:{}}
+const initialState = { allPost:{} , onePost:{}, delete:null}
 
 const postReducer = (state = initialState, action) => {
     switch(action.type){

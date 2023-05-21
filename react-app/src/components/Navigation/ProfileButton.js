@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
   const handleDemo = async(e) => {
     e.preventDefault()
     await dispatch(login('demo@aa.io','password'))
-    history.push('/home')
+    history.push('/')
   }
 
   const handleLogout = (e) => {
