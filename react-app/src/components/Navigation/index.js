@@ -5,63 +5,64 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { FaPinterest } from "react-icons/fa";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
-
+import { searchThunk } from '../../store/post';
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
-	const [searchQuery, setSearchQuery] = useState('')
-	const dispatch = useDispatch()
-	const history = useHistory()
+  const sessionUser = useSelector(state => state.session.user);
+  const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-	console.log(sessionUser, 'user');
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(searchThunk(searchQuery));
+    history.push('/search');
+  };
 
-	const handleSearch = (e) => {
-		setSearchQuery(e.target.value)
-	}
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		history.push(``)
-	}
-
-	return (
-		<div className='nav-bar'>
-			<ul>
-				<NavLink exact to="/">
-					<FaPinterest size={30} />
-				</NavLink>
-			</ul>
-			<ul>
-				{sessionUser &&
-					<NavLink exact to='/posts/new'
-						className='create-link'>
-						Create
-					</NavLink>
-				}
-			</ul>
-			<ul>
-				<form onSubmit={handleSubmit}>
-					<input
-						type="text"
-						value={searchQuery}
-						onChange={handleSearch}
-						placeholder="Search..."
-						className="search-input"
-					/>
-				</form>
-			</ul>
-			<ul>
-				<span className='invis'>
-					1
-				</span>
-			</ul>
-			{isLoaded && (
-				<ul>
-					<ProfileButton user={sessionUser} />
-				</ul>
-			)}
-		</div>
-	);
+  return (
+    <div className='nav-bar'>
+      <ul>
+        <NavLink exact to="/">
+          <FaPinterest size={30} />
+        </NavLink>
+      </ul>
+      <ul>
+        {sessionUser &&
+          <NavLink exact to='/posts/new' className='create-link'>
+            Create
+          </NavLink>
+        }
+      </ul>
+      <ul>
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Search..."
+            className="search-input"
+          />
+        </form>
+      </ul>
+      <ul>
+        <span className='invis'>
+          1
+        </span>
+      </ul>
+      {isLoaded && (
+        <ul>
+          <ProfileButton user={sessionUser} />
+        </ul>
+      )}
+    </div>
+  );
 }
 
 export default Navigation;

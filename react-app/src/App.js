@@ -10,9 +10,9 @@ import AllPost from "./components/Posts/AllPost";
 import OnePost from "./components/Posts/PostShow";
 import PostForm from "./components/Posts/PostForm";
 import UserPage from "./components/UserPage";
-import UserPost from "./components/Posts/UserPost";
 import PostorBoard from "./components/UserPage/PostorBoard";
 import BoardShow from "./components/Boards/BoardShow";
+import SearchPost from "./components/Posts/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +50,9 @@ function App() {
           </Route>
           <Route path='/board/:id'>
             <BoardShow />
+          </Route>
+          <Route exact path='/search'>
+            <SearchPost />
           </Route>
         </Switch>
       )}

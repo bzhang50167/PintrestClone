@@ -129,6 +129,7 @@ export const editUserThunk = (userId, formData) => async dispatch => {
 
 	if(res.ok){
 		const data = await res.json()
+		console.log(data, 'data in the thunk');
 		dispatch(editUserAction(data))
 	}
 }
@@ -148,7 +149,8 @@ export default function reducer(state = initialState, action) {
 			return newState
 		}
 		case EDIT_USER: {
-			const newState = {...state, user:{...state.user}, allUser:{...state.allUser}}
+			const newState = {...state, user:{}, allUser:{...state.allUser}}
+			console.log(action.data,'action in the reducer');
 			newState.user = action.data
 			return newState
 		}

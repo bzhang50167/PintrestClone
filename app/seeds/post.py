@@ -8,7 +8,6 @@ def seed_posts(seeded_user):
         'https://mangterest-pic.s3.amazonaws.com/fd47bb7fd9b04ca69f80933041cfedc8.jpg',
         'https://mangterest-pic.s3.amazonaws.com/c97fb9c403164b988266c17f29793f0d.jpg',
         'https://mangterest-pic.s3.amazonaws.com/a9b341090b0a41ccb93d245c423788eb.jpg',
-        'https://mangterest-pic.s3.amazonaws.com/24569038910343f0aee035cfad8f167d.jpg',
         'https://mangterest-pic.s3.amazonaws.com/f2f9fbb717584986bf9d9f9ab7a502ed.jpg',
         'https://mangterest-pic.s3.amazonaws.com/300d94574cf14b368ff49b1af5e30104.jpg',
         'https://mangterest-pic.s3.amazonaws.com/669bbd26be524dbfad2d0c3b9619156f.jpg',
@@ -18,7 +17,6 @@ def seed_posts(seeded_user):
         'https://mangterest-pic.s3.amazonaws.com/825ad4f1989047e986ba110f47d28903.png',
         'https://mangterest-pic.s3.amazonaws.com/652e7d2b5d074a4baee5ba92b5ff21bd.jpg',
         'https://mangterest-pic.s3.amazonaws.com/7416f0ac86b1465ebfde28065041e4c5.jpg',
-        'https://mangterest-pic.s3.amazonaws.com/f52b9b32bef4430dbfecde20c1a5a5e2.jpg',
         'https://mangterest-pic.s3.amazonaws.com/53d7393483f94ed8aa45ab6ba4b0616c.jpg',
         'https://mangterest-pic.s3.amazonaws.com/a488e69447a240d3832c9184ccd8c37f.jpg',
         'https://mangterest-pic.s3.amazonaws.com/10cfafc5319b4f9ebf2ba7430483207e.jpg',
@@ -38,11 +36,43 @@ def seed_posts(seeded_user):
         'https://mangterest-pic.s3.amazonaws.com/561f554364ee4ede897bb972f2ed0c09.jpg'
     ]
 
+    titles = [
+        'the PROMISED NEVERLAND',
+        'EIGHTY SIX',
+        'Violet Evergarden',
+        'Violet Evergarden',
+        'Vanidasu',
+        'Black Butler',
+        'SPY ROOM',
+        'One Piece',
+        'Pandora Hearts',
+        'Owari no Seraph',
+        'Oshi no Ko',
+        'One Piece',
+        'Rental Girlfriend',
+        'Lycoris Recoil',
+        'Spy x Family',
+        'Code Geass',
+        'Kage no jitsuryokusha',
+        'Hanako-kun',
+        'xxxHolic',
+        'Hyouka',
+        'Horimiya',
+        'Quintessential Quintuplets',
+        'Fate Requiem',
+        'CardCaptor Sakura',
+        'Bunko Stray Dogs',
+        'Bocchi the Rock',
+        'Shimasuri',
+        'Fate',
+        'Black Butler'
+    ]
+
     for i in range(30):
         post = Post(
             users=seeded_user[i % len(seeded_user)],
             text=f'Sample post {i+1}!!!!',
-            title=f'Sample title {i+1}~~~~',
+            title=titles[i % len(titles)],
             image_url=image_urls[i % len(image_urls)]
         )
         all_post.append(post)

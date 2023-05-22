@@ -3,6 +3,7 @@ const GET_POST_BY_ID = 'post/GET_POST_BY_ID'
 const CREATE_POST = 'post/CREATE_POST'
 const EDIT_POST = 'post/EDIT_POST'
 const DELETE_POST = 'post/DELETE_POST'
+const SEARCH = 'posts/SERCH'
 
 const getAllPostAction = (data) => {
     return {
@@ -36,6 +37,13 @@ const deletePostAction = (postId) => {
     return {
         type: DELETE_POST,
         postId
+    }
+}
+
+const searchAction = (data) => {
+    return {
+        type: SEARCH,
+        data
     }
 }
 
@@ -98,7 +106,16 @@ export const editPostThunk = (id , formData) => async dispatch => {
     }
 }
 
-const initialState = { allPost:{} , onePost:{}}
+export const searchThunk = (query) => async dispatch => {
+    const res = await fetch(`/posts/search?query=${query}`);
+
+    if (res.ok){
+        const data = await res.json()
+        dispatch(searchAction(data))
+    }
+}
+
+const initialState = { allPost:{} , onePost:{}, searchPost:{}}
 
 const postReducer = (state = initialState, action) => {
     switch(action.type){
@@ -125,6 +142,11 @@ const postReducer = (state = initialState, action) => {
         case DELETE_POST:{
             const newState = {...state, allPost: {...state.allPost}}
             delete newState.allPost[action.postId]
+            return newState
+        }
+        case SEARCH: {
+            const newState = {...state, searchPost:{} }
+            action.data.forEach(post => newState.searchPost[post.id] = post)
             return newState
         }
         default:{

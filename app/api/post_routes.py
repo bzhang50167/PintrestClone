@@ -82,3 +82,21 @@ def delete_post(id):
         return jsonify({
             'message': 'Post Deleted Successfully'
         })
+
+@post_routes.route('/search')
+def search_post():
+    query = request.args.get('query')
+
+    if not query:
+        return 'Nothing provided'
+
+    posts = Post.query.filter(
+        db.or_(
+            Post.text.ilike(f'%{query}%'),
+            Post.title.ilike(f'%{query}%')
+        )
+    ).all()
+
+
+    post_list = [post.to_dict() for post in posts]
+    return jsonify(post_list)

@@ -5,9 +5,9 @@ import './Post.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Masonry from "react-masonry-css";
 
-const AllPost = () => {
+const SearchPost = () => {
     const sessionUser = useSelector(state => state.session.user)
-    const allPost = useSelector(state => state.post.allPost)
+    const allPost = useSelector(state => state.post.searchPost)
     const posts = Object.values(allPost)
     const history = useHistory()
     const dispatch = useDispatch()
@@ -16,12 +16,10 @@ const AllPost = () => {
         dispatch(getAllPostThunk())
     }, [dispatch, posts.length])
 
-    console.log(sessionUser);
 
     if(!sessionUser){
         history.push('/')
     }
-
 
     const breakpointColumnsObj = {
         default: 4,
@@ -56,4 +54,4 @@ const AllPost = () => {
     )
 }
 
-export default AllPost
+export default SearchPost

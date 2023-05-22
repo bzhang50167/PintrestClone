@@ -24,6 +24,7 @@ const EditUserModal = (id) => {
     }, [user])
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         if (firstName === null) {
             setErrors([
                 'first name is required'
@@ -40,6 +41,8 @@ const EditUserModal = (id) => {
         if (img) {
             formData.append('profile_pic', img)
         }
+
+        console.log(formData, 'formdata <=====');
 
         await dispatch(editUserThunk(+id.id, formData))
     }
