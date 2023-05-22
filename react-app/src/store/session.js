@@ -149,7 +149,7 @@ export default function reducer(state = initialState, action) {
 		}
 		case EDIT_USER: {
 			const newState = {...state, user:{...state.user}, allUser:{...state.allUser}}
-			newState.user[action.data.id] = action.data
+			newState.user = action.data
 			return newState
 		}
 		default:

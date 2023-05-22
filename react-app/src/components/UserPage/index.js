@@ -11,12 +11,7 @@ const UserPage = () => {
     const user = useSelector(state => state.session.allUser)
     const userer = useSelector(state => state.session.user)
     const { id } = useParams()
-    const [classname, setClassname] = useState('')
     const dispatch = useDispatch()
-    console.log(classname ,'is it changing');
-    console.log(typeof(id));
-    // console.log(user, 'user');
-    // console.log(id, 'param id');
     useEffect(() => {
         dispatch(getAllUserThunk())
     }, [dispatch])

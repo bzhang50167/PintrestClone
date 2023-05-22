@@ -15,17 +15,33 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
+		if (!email.includes('@') || email.length < 5) {
+			setErrors([
+				"Must be valid Email"
+			])
+		} else if (username.length > 30) {
+			setErrors([
+				"Must have shorter Username"
+			])
+		} else if (username.length < 4) {
+			setErrors([
+				"Must have longer Username"
+			])
+		} else if (password.length < 6) {
+			setErrors([
+				"Password must be longer than 6 characters"
+			])
+		} else if (password !== confirmPassword) {
+			setErrors([
+				"Confirm Password field must be the same as the Password field",
+			]);
+		} else if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
 				closeModal();
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
 	};
 
@@ -33,7 +49,7 @@ function SignupFormModal() {
 		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
-				<ul>
+				<ul className="error">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}

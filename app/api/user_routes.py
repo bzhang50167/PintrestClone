@@ -36,18 +36,18 @@ def edit_user(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data,'+++++++++++++++++++++++++++++++++')
     if form.validate_on_submit():
-        user_pic = form.data['profile_pic']
-        user_pic.filename = get_unique_filename(user_pic.filename)
-        upload = upload_file_to_s3(user_pic)
+        if form.data['profile_pic']:
+            user_pic = form.data['profile_pic']
+            user_pic.filename = get_unique_filename(user_pic.filename)
+            upload = upload_file_to_s3(user_pic)
 
-        if 'url' not in upload:
-            return upload['errors']
+            if 'url' not in upload:
+                return upload['errors']
 
-        profile_pic = upload['url']
-
+            profile_pic = upload['url']
+            user.profile_pic = profile_pic
         user.first_name = form.data['first_name']
         user.last_name = form.data['last_name']
-        user.profile_pic = profile_pic
 
         db.session.commit()
 

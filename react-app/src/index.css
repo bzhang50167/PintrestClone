@@ -18,5 +18,11 @@ button{
 }
 
 input{
-    margin-left: 20px;
+    background-color: rgb(227, 211, 227);
+    border-radius: 20px;
+    margin-left: 5px;
+}
+
+.error {
+    color: red;
 }

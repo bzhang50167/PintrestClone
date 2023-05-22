@@ -6,18 +6,20 @@ import { useModal } from "../../context/Modal";
 const EditCommentModal = (id) => {
     const comment = useSelector(state => state.comments.oneComment)
     const dispatch = useDispatch()
-    const [text, setText] = useState('')
+    const [text, setText] = useState(comment.text)
     const commentId = +id.id
     const { closeModal } = useModal();
-    console.log(text,'is this a tuple?');
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
     }, [dispatch, commentId])
-    // console.log(comment, 'comment');
-    // console.log(commentId);
     const handleEdit = async (e) => {
-        await dispatch(editCommentThunk(commentId, text))
-        closeModal()
+        if(text === ''){
+            setText(comment.text)
+        } else {
+            await dispatch(editCommentThunk(commentId, text))
+
+            closeModal()
+        }
     }
     return (
         <div>

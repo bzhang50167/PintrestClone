@@ -9,19 +9,28 @@ import { createCommentThunk } from '../../store/comment';
 const SubmitBar = (sessionUser) => {
     const user = sessionUser.sessionUser
     const { id } = useParams()
+	const [errors, setErrors] = useState([]);
     const [comment, setComment] = useState('')
     const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
-        const info = {
-            post_id: id,
-            user_id: user.id,
-            text: comment
+        if(comment === ''){
+            setErrors([
+                "comment can't be empty"
+            ])
+        } else {
+            const info = {
+                post_id: id,
+                user_id: user.id,
+                text: comment
+            }
+
+            setComment('')
+            setErrors([])
+
+            await dispatch(createCommentThunk(info))
         }
 
-        setComment('')
-
-        await dispatch(createCommentThunk(info))
     }
     return (
         <div>
@@ -33,6 +42,7 @@ const SubmitBar = (sessionUser) => {
                         value={comment}
                         placeholder='Add a comment'
                         onChange={e => setComment(e.target.value)}
+                        required
                     />
                     <div type='submit' onClick={handleSubmit}>
                         <spam>
@@ -41,6 +51,11 @@ const SubmitBar = (sessionUser) => {
                     </div>
                 </div>
             </div>
+            <ul className="error">
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
         </div>
     )
 }

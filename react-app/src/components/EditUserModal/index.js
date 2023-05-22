@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AiFillSmile } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { editUserThunk } from "../../store/session";
@@ -10,23 +10,47 @@ const EditUserModal = (id) => {
     const [img, setImg] = useState(null)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+    const [errors, setErrors] = useState([])
 
     const handleImage = (e) => {
         setImg(e.target.files[0])
     }
 
+    useEffect(() => {
+        if (user) {
+            setFirstName(user.firstName)
+            setLastName(user.lastName)
+        }
+    }, [user])
+
     const handleSubmit = async (e) => {
+        if (firstName === null) {
+            setErrors([
+                'first name is required'
+            ])
+        }
+        if (lastName === null) {
+            setErrors([
+                'last name is required'
+            ])
+        }
         const formData = new FormData()
         formData.append('first_name', firstName)
         formData.append('last_name', lastName)
-        formData.append('profile_pic', img)
+        if (img) {
+            formData.append('profile_pic', img)
+        }
 
         await dispatch(editUserThunk(+id.id, formData))
     }
-    console.log(user);
     return (
         <div>
             <h1>EDIT PROFILE</h1>
+            <ul className="error">
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
             <form>
                 <div className="editdiv">
                     <label>

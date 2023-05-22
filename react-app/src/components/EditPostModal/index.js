@@ -13,25 +13,36 @@ const EditPostModal = (id) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [text, setText] = useState(post.text)
+	const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState(post.title)
     const postId = +id.id
 
     useEffect(() => {
         dispatch(getPostByIdThunk(postId))
     }, [dispatch, postId])
-
+    console.log(errors,'errros~~~~~~');
 
     const handleSubmit = async () => {
 
-        const formData = {
-            text,
-            title
+        if(text === ''){
+            setErrors([
+                "Can't leave discription empty"
+            ])
         }
+        else if (title === ''){
+            setErrors([
+                "Can't leave title empty"
+            ])
+        } else {
+            const formData = {
+                text,
+                title
+            }
 
-        await dispatch(editPostThunk(postId, formData))
-        history.push(`/post/${+id.id}`)
-        closeModal()
-
+            await dispatch(editPostThunk(postId, formData))
+            history.push(`/post/${+id.id}`)
+            closeModal()
+        }
     }
 
     return (
@@ -69,6 +80,11 @@ const EditPostModal = (id) => {
                             <AiFillSmile className="smile-icon" />
                         </div>
                     </div>
+                    <ul className="error">
+					{errors.map((error, idx) => (
+						<li key={idx}>{error}</li>
+					))}
+				</ul>
                 </div>
             </form>
         </div>

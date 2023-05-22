@@ -98,12 +98,12 @@ export const editPostThunk = (id , formData) => async dispatch => {
     }
 }
 
-const initialState = { allPost:{} , onePost:{}, delete:null}
+const initialState = { allPost:{} , onePost:{}}
 
 const postReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_ALL_POST: {
-            const newState = {...state , allPost: {...state.allPost}}
+            const newState = {...state , allPost: {...state.allPost}, onePost:{}}
             action.data.forEach(post => newState.allPost[post.id] = post)
             return newState
         }

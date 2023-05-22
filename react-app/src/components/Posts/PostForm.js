@@ -12,6 +12,7 @@ const PostForm = () => {
     const [file, setFile] = useState(null)
     const [title, setTitle] = useState('')
     const [preview, setPreview] = useState(null)
+    const [errors, setErrors] = useState([]);
 
     const handleAddImage = (e) => {
         const selectedFile = e.target.files[0]
@@ -20,15 +21,32 @@ const PostForm = () => {
     }
 
     const handleSubmit = async () => {
-        const formData = new FormData()
-        formData.append('user_id', user.id)
-        formData.append('text', text)
-        formData.append('title', title)
-        formData.append('image_url', file)
+        if (!file) {
+            setErrors([
+                'Image Required'
+            ])
+        } else if (!title) {
+            setErrors([
+                'Title Required'
+            ])
+        } else if (!text) {
+            setErrors([
+                'Tell everyone about the post'
+            ])
+        } else {
+            const formData = new FormData()
+            formData.append('user_id', user.id)
+            formData.append('text', text)
+            formData.append('title', title)
+            formData.append('image_url', file)
 
-        console.log(formData);
-        history.push('/home')
-        await dispatch(createPostThunk(formData))
+            console.log(formData);
+            history.push('/home')
+            await dispatch(createPostThunk(formData))
+        }
+
+
+
     }
 
     return (
@@ -40,6 +58,7 @@ const PostForm = () => {
             )}
             <form className="post-form">
                 <div>
+                    <h1>Create New Post</h1>
                     <label>
                         <input
                             type="file"
@@ -58,16 +77,17 @@ const PostForm = () => {
                             placeholder='Title Goes Here'
                             onChange={e => setTitle(e.target.value)}
                             className="title-input"
+                            required
                         />
                     </div>
                     <div className="text-icon">
                         <textarea
-                            // type="text"
                             value={text}
                             rows={6}
                             cols={30}
                             placeholder="Tell everyone what your pin is about"
                             onChange={e => setText(e.target.value)}
+                            required
                         />
                         <div
                             type="submit"
@@ -76,6 +96,11 @@ const PostForm = () => {
                             <AiFillSmile className="smile-icon" />
                         </div>
                     </div>
+                    <ul className="error">
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
                 </div>
             </form>
         </div>
