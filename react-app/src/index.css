@@ -27,3 +27,8 @@ input{
 .error {
     color: rgb(223, 6, 6);
 }
+
+body{
+    font-family: 'Dongle', sans-serif;
+    font-size: xx-large;
+}

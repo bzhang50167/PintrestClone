@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllPostThunk } from "../../store/post";
 import './splash.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Image from "./image";
 
 const SplashPage = () => {
     const allPost = useSelector(state => state.post.allPost)
@@ -10,24 +13,54 @@ const SplashPage = () => {
     const posts = Object.values(allPost)
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(user);
 
     useEffect(() => {
         dispatch(getAllPostThunk())
     }, [dispatch])
 
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 11,
+            slidesToSlide: 5
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 7,
+            slidesToSlide: 4
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 3,
+            slidesToSlide: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1
+        }
+    };
+
+    const image = posts.map(post => (
+        <Image
+            imgUrl={post.imageUrl}
+        />
+    ))
+
+    if (user.user !== null) history.push('/home')
+
     return (
         <div>
-            {user.user !== null ? history.push('/home') :
-                (
-                    <div className="splash-box">
-                        {posts?.map(post => (
-                            <div className="splash-div">
-                                <img className="splash-image" src={post.imageUrl} />
-                            </div>
-                        ))}
-                    </div>
-                )}
+            <h1>WELCOME</h1>
+            <Carousel
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={2500}
+                responsive={responsive}
+            >
+                {image}
+            </Carousel>
         </div>
     )
 }

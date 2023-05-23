@@ -1,8 +1,8 @@
 .splash-image{
     border-radius: 7%;
     position: relative;
-    width: 10em;
-    height: 33vh;
+    width: 20em;
+    height: 70vh;
     object-fit: cover;
     overflow: hidden;
     background-size: cover;

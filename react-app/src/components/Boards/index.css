@@ -56,21 +56,20 @@
     scale: 1.04;
 }
 
-.board-button {
-    position: absolute;
-    top: 10%;
-    left: 80%;
-    /* transform: translate(-50%, -50%); */
+.remove-board-button{
+    position: relative;
+    top: -30px;
+    right: -5px;
+    transition: opacity 0.7s;
     opacity: 0;
-    /* transition: opacity 0.7s; */
     border: 1px black solid;
     background-color: rgb(255, 0, 0);
     border-radius: 20px;
 }
 
-.board-show:hover .board-button {
+.board-show:hover .remove-board-button {
     opacity: 2;
-    /* filter: brightness(1.2); */
+    filter: brightness(1.2);
     cursor: alias;
 }
 

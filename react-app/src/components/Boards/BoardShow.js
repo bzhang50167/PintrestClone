@@ -69,7 +69,7 @@ const BoardShow = () => {
                         </div>
                         <div>
                             <button
-                                className="board-button"
+                                className="remove-board-button"
                                 onClick={e => handleRemove(post.id)}>
                                 remove
                             </button>

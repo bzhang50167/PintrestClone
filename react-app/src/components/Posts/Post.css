@@ -189,3 +189,14 @@
     user-select: none;
     pointer-events: none;
 }
+
+.comment-dropdown{
+    height: 40vh;
+    width: fit-content;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.cHidden{
+    display: none;
+}
