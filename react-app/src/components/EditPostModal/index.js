@@ -33,6 +33,10 @@ const EditPostModal = (id) => {
             setErrors([
                 "Can't leave title empty"
             ])
+        } else if (text.length > 100){
+            setErrors([
+                'Please keep comments under 100 characters'
+            ])
         } else {
             const formData = {
                 text,

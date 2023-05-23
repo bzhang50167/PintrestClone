@@ -21,7 +21,7 @@ const BoardForm = (id) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <label>
-                    NAME OF GROUP
+                    NAME OF BOARD
                     <input
                     type="text"
                     value={name}
@@ -30,7 +30,7 @@ const BoardForm = (id) => {
                     />
                 </label>
                 <button type="submit">
-                    Create
+                    Create Board
                 </button>
             </form>
         </div>

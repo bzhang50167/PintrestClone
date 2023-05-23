@@ -150,7 +150,7 @@ export default function reducer(state = initialState, action) {
 		}
 		case EDIT_USER: {
 			const newState = {...state, user:{}, allUser:{...state.allUser}}
-			console.log(action.data,'action in the reducer');
+			newState.allUser[action.data.id] = action.data
 			newState.user = action.data
 			return newState
 		}

@@ -58,12 +58,14 @@ def add_image():
 def update_group(id):
     group = Group.query.get(id)
     form = GroupForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data,'+++++++++++++++++++++++++++++++++++')
     if form.validate_on_submit():
         group.name = form.data['name']
 
         db.session.commit()
 
-        return jsonify(group)
+        return jsonify(group.to_dict())
 
     else:
         return 'Bad Data'

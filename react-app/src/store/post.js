@@ -55,7 +55,6 @@ export const createPostThunk = (formData) => async dispatch => {
 
     if (res.ok){
         const data = await res.json()
-        console.log(data, 'DATA');
         dispatch(createPostAction(data))
     }
 }
@@ -84,7 +83,6 @@ export const getPostByIdThunk = (id) => async dispatch => {
 
     if (res.ok){
         const data = await res.json()
-        console.log(data);
         dispatch(getPostByIdAction(data))
     }
 }

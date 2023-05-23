@@ -19,37 +19,55 @@ const GetAllBoard = (id) => {
     return (
         <div className="whole-page">
             {userBoard.map((board) => (
-                <div className="other-page" onClick={e => history.push(`/board/${board.id}`) }>
+                <div className="other-page" onClick={e => history.push(`/board/${board.id}`)}>
                     <div className="mainimg">
-                        {board.groupPost[0] !== null ? (
+                        {board.groupPost[0] !== undefined ? (
                             <div>
                                 <img
-                                className="mainpic"
-                                src={board.groupPost[0]?.imageUrl}
-                                title={board.name}/>
+                                    className="mainpic"
+                                    src={board.groupPost[0]?.imageUrl}
+                                    title={board.name} />
                             </div>
-                        ) : ''}
+                        ) : (<div>
+                            <img
+                                className="mainpic"
+                                src='https://mangterest-pic.s3.us-west-1.amazonaws.com/b7dbe50d40da46c78a636cfbd468d190.jpg'
+                                title={board.name} />
+                        </div>
+                        )}
                     </div>
                     <div className="otherimg">
                         <div>
-                            {board.groupPost[1] !== null ? (
+                            {board.groupPost[1] !== undefined ? (
                                 <div>
                                     <img
-                                    className="otherpic"
-                                    src={board.groupPost[1]?.imageUrl}
-                                    title={board.name}/>
+                                        className="otherpic"
+                                        src={board.groupPost[1]?.imageUrl}
+                                        title={board.name} />
                                 </div>
-                            ) : ''}
+                            ) : (<div>
+                                <img
+                                    className="otherpic"
+                                    src='https://mangterest-pic.s3.us-west-1.amazonaws.com/b7dbe50d40da46c78a636cfbd468d190.jpg'
+                                    title={board.name} />
+                            </div>
+                            )}
                         </div>
                         <div>
-                            {board.groupPost[2] !== null ? (
+                            {board.groupPost[2] !== undefined ? (
                                 <div>
                                     <img
-                                    className="otherpic"
-                                    src={board.groupPost[2]?.imageUrl}
-                                    title={board.name} />
+                                        className="otherpic"
+                                        src={board.groupPost[2]?.imageUrl}
+                                        title={board.name} />
                                 </div>
-                            ) : ''}
+                            ) : (<div>
+                                <img
+                                    className="otherpic"
+                                    src='https://mangterest-pic.s3.us-west-1.amazonaws.com/b7dbe50d40da46c78a636cfbd468d190.jpg'
+                                />
+                            </div>
+                            )}
                         </div>
                     </div>
                 </div>

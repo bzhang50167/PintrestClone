@@ -76,7 +76,7 @@
 
 .image-border {
     border-radius: 40px;
-    max-width: 30rem;
+    max-width: 100vh;
 }
 
 .single-post-info {
@@ -116,15 +116,17 @@
     display: flex;
     position: relative;
     border: .5px solid gray;
-    background-color: rgb(182, 173, 173);
+    background-color: rgb(229, 228, 228);
     padding: 100px;
     top: 10px;
     border-radius: 20px;
+    margin-left: 11px;
 }
 
 .form-page {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .text-inputs {
@@ -144,11 +146,46 @@
     background-color: transparent;
 }
 
-.smile-icon:hover{
+.smile-icon:hover {
     color: purple;
     cursor: pointer;
 }
 
-.title-input{
+.title-input {
     margin-bottom: 10px;
+}
+
+.image-preview {
+    max-width: 80vh;
+    max-height: 80vh;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.post-title {
+    margin-top: 90px;
+}
+
+.comment-spacing-div {
+    margin: 10px 0px;
+    word-wrap: break-word;
+}
+
+.word-break {
+    word-wrap: break-word;
+
+}
+
+.textarea-comment {
+    width: 100%;
+    height: auto;
+    resize: none;
+    border: none;
+    background-color: transparent;
+    overflow: auto;
+    outline: none;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
 }

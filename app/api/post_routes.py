@@ -38,6 +38,7 @@ def create_post():
         new_post = Post(
             user_id = form.data['user_id'],
             text = form.data['text'],
+            title = form.data['title'],
             image_url = post_pic
         )
 

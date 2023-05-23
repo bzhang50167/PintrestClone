@@ -63,21 +63,33 @@ const OnePost = () => {
                             modalComponent={<AddtoBoard id={post.id} />}
                         />
                     </div>
-                    <h2>{post.title}</h2>
+                    <h2 className="post-title">{post.title}</h2>
                     <div>
-                        {post.text}
+                        <textarea
+                            className="textarea-comment"
+                            cols={34}
+                            rows={3}
+                            value={post.text}
+                        />
                     </div>
                     <h3>Comments</h3>
                     {comments?.length >= 1 ? (
                         comments.map(comment => (
                             <div className="individual-comments">
                                 <div>
-                                    <div>
+                                    <div className="comment-spacing-div">
                                         <Link to={`/user/${comment.userId}`}>
                                             {comment.user.username}
                                         </Link>
                                         {' '}
-                                        {comment.text}
+                                        <div className="word-break">
+                                            <textarea
+                                                className="textarea-comment"
+                                                cols={34}
+                                                rows={3}
+                                                value={comment.text}
+                                            />
+                                        </div>
                                     </div>
                                     <div>
                                         {sessionUser?.id === comment.userId ? (

@@ -16,7 +16,11 @@ const SubmitBar = (sessionUser) => {
     const handleSubmit = async (e) => {
         if(comment === ''){
             setErrors([
-                "comment can't be empty"
+                "Comment can't be empty!!"
+            ])
+        } else if(comment.length > 100) {
+            setErrors([
+                'Keep comments under 100 characters!!'
             ])
         } else {
             const info = {
@@ -24,7 +28,6 @@ const SubmitBar = (sessionUser) => {
                 user_id: user.id,
                 text: comment
             }
-
             setComment('')
             setErrors([])
 

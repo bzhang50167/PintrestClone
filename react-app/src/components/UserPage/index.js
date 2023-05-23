@@ -16,14 +16,17 @@ const UserPage = () => {
         dispatch(getAllUserThunk())
     }, [dispatch])
 
-    if(!user){
+    if (!user) {
         return null
     }
     return (
         <div className="page">
             <div className="page">
                 <div>
-                    <img className="profile-image" src={user[id].profilePic} />
+                    {user[id].profilePic !== null ? (
+                        <img className="profile-image" src={user[id].profilePic} />
+                    ) : <img className="profile-image" src="https://mangterest-pic.s3.amazonaws.com/11109d2e46ec49e2b8ca2eaa57bb3f86.jpg" />
+                    }
                     <div className="nameofuser">
                         {user[id].firstName} {user[id].lastName}
                     </div>
@@ -33,16 +36,16 @@ const UserPage = () => {
                     {userer.id === +id ? (
                         <div className="outeredit">
                             <div className="editbutton">
-                                    <OpenModalButton
-                                        buttonText='Edit Profile'
-                                        modalComponent={<EditUserModal id={id}/> }
-                                    />
+                                <OpenModalButton
+                                    buttonText='Edit Profile'
+                                    modalComponent={<EditUserModal id={id} />}
+                                />
                             </div>
                             <div className="editbutton">
-                                    <OpenModalButton
-                                        buttonText='Create Board'
-                                        modalComponent={<BoardForm id={id} />}
-                                    />
+                                <OpenModalButton
+                                    buttonText='Create Board'
+                                    modalComponent={<BoardForm id={id} />}
+                                />
                             </div>
                         </div>
                     ) : ''}

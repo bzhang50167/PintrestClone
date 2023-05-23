@@ -16,8 +16,6 @@ const AllPost = () => {
         dispatch(getAllPostThunk())
     }, [dispatch, posts.length])
 
-    console.log(sessionUser);
-
     if(!sessionUser){
         history.push('/')
     }

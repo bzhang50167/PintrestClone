@@ -21,8 +21,9 @@ input{
     background-color: rgb(227, 211, 227);
     border-radius: 20px;
     margin-left: 5px;
+    padding: 10px;
 }
 
 .error {
-    color: red;
+    color: rgb(223, 6, 6);
 }

@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom"
 import OpenModalButton from "../OpenModalButton"
 import RemoveFromBoard from "./RemoveFromBoard"
 import DeleteBoardModal from "./DeleteBoardModal"
+import EditNameofBoard from "./EditNameBoard"
 
 const BoardShow = () => {
     const board = useSelector(state => state.boards.oneBoard)
@@ -41,13 +42,23 @@ const BoardShow = () => {
         <div>
             <div>
                 <h1>
-                    {board.name}
-                    <span>
-                    <OpenModalButton
-                        buttonText='Delete Group'
-                        modalComponent={<DeleteBoardModal id={id} />}
-                        />
-                        </span>
+                    <div>
+                        {board.name}
+                    </div>
+                    <div>
+                        <div>
+                            <OpenModalButton
+                                buttonText='Edit Name of Board'
+                                modalComponent={<EditNameofBoard board={board} />}
+                            />
+                        </div>
+                        <div>
+                            <OpenModalButton
+                                buttonText='Delete Board'
+                                modalComponent={<DeleteBoardModal id={id} />}
+                            />
+                        </div>
+                    </div>
                 </h1>
             </div>
             <div className="whole-board-show">

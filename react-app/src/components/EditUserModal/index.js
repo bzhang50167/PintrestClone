@@ -24,7 +24,6 @@ const EditUserModal = (id) => {
     }, [user])
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
         if (firstName === null) {
             setErrors([
                 'first name is required'

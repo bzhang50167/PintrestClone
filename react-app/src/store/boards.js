@@ -2,6 +2,7 @@ const GET_ALL_BOARDS = 'boards/GET_ALL_BOARDS'
 const GET_ONE_BOARD = 'boards/GET_ONE_BOARD'
 const CREATE_BOARD_NAME = 'boards/CREATE_BOARD_NAME'
 const DELETE_BOARD = 'boards/DELETE_BOARD'
+const EDIT_BOARD_NAME = 'boards/EDIT_BOARD_NAME'
 
 const getAllBoardsAction = (data) => {
     return {
@@ -28,6 +29,13 @@ const deleteBoardAction = (boardId) => {
     return {
         type: DELETE_BOARD,
         boardId
+    }
+}
+
+const editBoardNameAction = (data) => {
+    return {
+        type: EDIT_BOARD_NAME,
+        data
     }
 }
 
@@ -100,6 +108,23 @@ export const deleteBoardThunk = (boardId) => async dispatch => {
 
     if(res.ok){
         dispatch(deleteBoardAction(boardId))
+        console.log('it is ok');
+    } else {
+        console.log('not okay');
+    }
+}
+
+export const editBoardNameThunk = (info, id) => async dispatch => {
+    const res = await fetch(`/groups/${id}/edit`,{
+        method:'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(info)
+    })
+    if(res.ok){
+        const data = await res.json()
+        dispatch(editBoardNameAction(data))
     }
 }
 
@@ -108,7 +133,7 @@ const initalState = { allBoards:{}, oneBoard:{}}
 const boardReducer = (state = initalState, action) => {
     switch(action.type){
         case GET_ALL_BOARDS: {
-            const newState = {...state, allBoards:{...state.allBoards}}
+            const newState = {...state, allBoards:{...state.allBoards}, oneBoard:{}}
             console.log(action.data,'action in the reducer');
             action.data.forEach(board => newState.allBoards[board.id] = board)
             return newState
@@ -121,6 +146,11 @@ const boardReducer = (state = initalState, action) => {
         case CREATE_BOARD_NAME: {
             const newState = {...state, allBoards:{...state.allBoards}}
             newState.allBoards[action.data.id] = action.data
+            return newState
+        }
+        case EDIT_BOARD_NAME: {
+            const newState = {...state, allBoards:{...state.allBoards}, oneBoard:{}}
+            newState.oneBoard[action.data.id] = action.id
             return newState
         }
         case DELETE_BOARD: {
