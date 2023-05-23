@@ -15,6 +15,7 @@ button{
 #modal-content{
     border-radius: 10px;
     padding: 20px;
+    background-image: linear-gradient(to bottom right, rgb(170, 49, 170), rgb(236, 192, 237));
 }
 
 input{

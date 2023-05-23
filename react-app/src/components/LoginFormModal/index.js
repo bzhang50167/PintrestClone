@@ -17,12 +17,12 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
   return (
-    <>
+    <div className="login-page">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul className="error">
@@ -30,27 +30,34 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
+        <div>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div className="submit-button-login">
+          <button type="submit">Log In</button>
+        </div>
+
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,10 @@
+.signup-page{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.signup-imput{
+    display: flex;
+    justify-content: space-between;
+}
