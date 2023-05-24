@@ -67,7 +67,7 @@ const PostForm = () => {
             )}
             <form className="post-form">
                 <div>
-                    <h1>Create New Post</h1>
+                    <h1 className="new-post-title">Create New Post</h1>
                     <label>
                         <input
                             type="file"

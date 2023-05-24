@@ -1,3 +1,12 @@
 .text-inputs{
     margin-left: 10px;
 }
+
+.post-image-edit{
+    max-width: 60vh;
+    border-radius: 10px;
+}
+
+.textarea-edit{
+    resize: none;
+}

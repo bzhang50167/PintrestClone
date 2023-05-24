@@ -14,14 +14,16 @@ const EditCommentModal = (id) => {
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
     }, [dispatch, commentId])
-    const handleEdit = async (e) => {
-        if (text === '') {
+    
+    useEffect(() => {
+        if(text === undefined || !text){
             setText(comment.text)
-        } else {
-            await dispatch(editCommentThunk(commentId, text))
-
-            closeModal()
         }
+    })
+
+    const handleEdit = async (e) => {
+        await dispatch(editCommentThunk(commentId, text))
+        closeModal()
     }
     return (
         <div className="edit-comment-div">
