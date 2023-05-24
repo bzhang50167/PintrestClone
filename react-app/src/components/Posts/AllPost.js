@@ -23,9 +23,9 @@ const AllPost = () => {
 
     const breakpointColumnsObj = {
         default: 4,
-        1200: 3,
-        992: 2,
-        768: 1
+        1366: 3,
+        1025: 2,
+        693: 1
     };
 
     return (

@@ -46,13 +46,13 @@ const BoardShow = () => {
                         {board.name}
                     </div>
                     <div>
-                        <div>
+                        <div className="modal-fit">
                             <OpenModalButton
                                 buttonText='Edit Name of Board'
                                 modalComponent={<EditNameofBoard board={board} />}
                             />
                         </div>
-                        <div>
+                        <div className="modal-fit">
                             <OpenModalButton
                                 buttonText='Delete Board'
                                 modalComponent={<DeleteBoardModal id={id} />}

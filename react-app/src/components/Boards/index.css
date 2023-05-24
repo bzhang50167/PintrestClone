@@ -58,7 +58,7 @@
 
 .remove-board-button{
     position: relative;
-    top: -30px;
+    top: -60px;
     right: -5px;
     transition: opacity 0.7s;
     opacity: 0;
@@ -90,4 +90,8 @@
     width: fit-content;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.modal-fit{
+    display: flex;
 }

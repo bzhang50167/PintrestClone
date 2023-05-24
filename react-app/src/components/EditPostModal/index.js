@@ -53,7 +53,7 @@ const EditPostModal = (id) => {
         <div>
             <form className="post-form">
                 <div>
-                    <img alt="postimage" src={post.imageUrl} />
+                    <img className="post-image-edit" alt="postimage" src={post.imageUrl} />
                 </div>
                 <div className="text-inputs">
                     <div>
@@ -71,6 +71,7 @@ const EditPostModal = (id) => {
                     <div className="text-icon">
                         <textarea
                             // type="text"
+                            className="textarea-edit"
                             value={text}
                             rows={6}
                             cols={30}

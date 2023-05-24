@@ -72,7 +72,7 @@ const OnePost = () => {
                             value={post.text}
                         />
                     </div>
-                    <h3>Comments</h3>
+                    <h3 className="fit-content">Comments</h3>
                     {comments?.length >= 1 && comments?.length <= 3 ? (
                         comments.reverse().map(comment => (
                             <div className="individual-comments">
@@ -110,7 +110,11 @@ const OnePost = () => {
                         ))
                     ) : comments?.length > 3 ? (
                         <div>
-                            <div onClick={e => setShowComment(!showComment)}>see more comments...</div>
+                            <div
+                                className="viewallcomments"
+                                onClick={e => setShowComment(!showComment)}>
+                                View all {comments.length} Comments
+                            </div>
                             <div className={showComment ? commentClassName : "hidden"}>
                                 {comments.reverse().map(comment => (
                                     <div className="individual-comments">
@@ -163,13 +167,13 @@ const OnePost = () => {
                                             {sessionUser?.id === comments[comments.length - 1].userId ? (
                                                 <OpenModalButton
                                                     buttonText='Edit'
-                                                    modalComponent={<EditCommentModal id={comment.id} />}
+                                                    modalComponent={<EditCommentModal id={comments[comments.length - 1].id} />}
                                                 />
                                             ) : ''}
                                             {sessionUser?.id === comments[comments.length - 1].userId ? (
                                                 <OpenModalButton
                                                     buttonText='Delete'
-                                                    modalComponent={<DeleteCommentModal id={comment.id} />}
+                                                    modalComponent={<DeleteCommentModal id={comments[comments.length - 1].id} />}
                                                 />
                                             ) : ''}
                                         </div>
@@ -190,13 +194,13 @@ const OnePost = () => {
                                             {sessionUser?.id === comments[comments.length - 2].userId ? (
                                                 <OpenModalButton
                                                     buttonText='Edit'
-                                                    modalComponent={<EditCommentModal id={comment.id} />}
+                                                    modalComponent={<EditCommentModal id={comments[comments.length - 2].id} />}
                                                 />
                                             ) : ''}
                                             {sessionUser?.id === comments[comments.length - 2].userId ? (
                                                 <OpenModalButton
                                                     buttonText='Delete'
-                                                    modalComponent={<DeleteCommentModal id={comment.id} />}
+                                                    modalComponent={<DeleteCommentModal id={comments[comments.length - 2].id} />}
                                                 />
                                             ) : ''}
                                         </div>

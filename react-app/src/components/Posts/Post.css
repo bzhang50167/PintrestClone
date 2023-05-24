@@ -24,6 +24,11 @@
     border-radius: 10px;
 }
 
+.new-post-title{
+    position: relative;
+    bottom: 50%;
+}
+
 .board-button {
     position: absolute;
     top: 10%;
@@ -154,6 +159,7 @@
 
 .title-input {
     margin-bottom: 10px;
+    width: 80%;
 }
 
 .image-preview {
@@ -165,17 +171,22 @@
 }
 
 .post-title {
-    margin-top: 90px;
+    margin-top: 60px;
+    margin-bottom: 1px;
 }
 
 .comment-spacing-div {
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
     word-wrap: break-word;
 }
 
 .word-break {
     word-wrap: break-word;
 
+}
+
+.fit-content{
+    margin: 10px 10px;
 }
 
 .textarea-comment {
@@ -200,4 +211,14 @@
 
 .cHidden{
     display: none;
+}
+
+.postImage{
+    position: relative;
+    bottom: 45%;
+}
+
+.viewallcomments{
+    cursor: pointer;
+    width: fit-content;
 }

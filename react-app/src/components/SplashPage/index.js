@@ -51,8 +51,10 @@ const SplashPage = () => {
     if (user.user !== null) history.push('/home')
 
     return (
-        <div>
-            <h1>WELCOME</h1>
+        <div className="spash-page">
+            <div className="spash-page">
+                <h1 className="spash-page">FIND SOME NEW TITLES</h1>
+            </div>
             <Carousel
                 infinite={true}
                 autoPlay={true}

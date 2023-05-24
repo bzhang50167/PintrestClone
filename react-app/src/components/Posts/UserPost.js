@@ -25,10 +25,10 @@ const UserPost = (id) => {
     } , [dispatch])
 
     const breakpointColumnsObj = {
-        default: 4, // number of columns by default
-        1200: 3, // number of columns for screens >= 1200px
-        992: 2, // number of columns for screens >= 992px
-        768: 1 // number of columns for screens >= 768px
+        default: 4,
+        1366: 3,
+        1025: 2,
+        693: 1
     };
 
     return (

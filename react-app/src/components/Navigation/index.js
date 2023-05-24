@@ -6,6 +6,8 @@ import './Navigation.css';
 import { FaPinterest } from "react-icons/fa";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { searchThunk } from '../../store/post';
+import { BsLinkedin, BsGithub } from "react-icons/bs";
+
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -52,8 +54,9 @@ function Navigation({ isLoaded }) {
         </form>
       </ul>
       <ul>
-        <span className='invis'>
-          1
+        <span>
+          <a href="https://github.com/bzhang50167" target="_blank"><BsGithub /></a>
+          <a href="https://www.linkedin.com/in/bao-heng-zhang-b43731256/" target="_blank"><BsLinkedin /></a>
         </span>
       </ul>
       {isLoaded && (
