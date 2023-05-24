@@ -54,6 +54,9 @@ function App() {
           <Route exact path='/search'>
             <SearchPost />
           </Route>
+          <Route path='/directmessage/:userId/:ownerId' exact={true}>
+            <Chat/>
+          </Route>
         </Switch>
       )}
     </>
