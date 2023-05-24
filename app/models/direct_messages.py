@@ -10,12 +10,12 @@ class DirectMessage(db.Model):
     message = db.Column(db.String(255), nullable=False)
     sent_at = db.Column(db.String(100), nullable=False)
     sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    reciever_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    recipient_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
     def to_dict(self):
         return {
             'id': self.id,
             'message': self.message,
             'senderId': self.sender_id,
-            'recieverId': self.reciever_id
+            'recieverId': self.recipient_id
         }

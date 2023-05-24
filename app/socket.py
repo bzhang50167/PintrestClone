@@ -4,7 +4,7 @@ from app.models import DirectMessage, db
 socketio = SocketIO()
 
 if os.environ.get("FLASK_ENV") == "production":
-    origins = []
+    origins = ['https://mangaterest.onrender.com']
 else:
     origins = "*"
 
@@ -15,7 +15,7 @@ def handle_chat(data):
     if data != "User connected!":
         dm = DirectMessage(
             sender_id=data['sender_id'],
-            reciever_id=data['reciever_id'],
+            recipient_id=data['recipient_id'],
             message=data['message'],
             sent_at='hi'
         )

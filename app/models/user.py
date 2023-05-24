@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from .direct_messages import DirectMessage
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -30,6 +30,20 @@ class User(db.Model, UserMixin):
     groups = db.relationship(
         'Group',
         back_populates='users'
+    )
+
+    sender = db.relationship(
+        "User",
+        secondary="direct_messages",
+        primaryjoin=(id == DirectMessage.sender_id),
+        secondaryjoin=(id == DirectMessage.recipient_id),
+    )
+
+    direct_messages2 = db.relationship(
+        "User",
+        secondary="direct_messages",
+        primaryjoin=(id == DirectMessage.recipient_id),
+        secondaryjoin=(id == DirectMessage.sender_id),
     )
 
     @property
