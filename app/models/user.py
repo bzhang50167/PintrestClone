@@ -32,20 +32,6 @@ class User(db.Model, UserMixin):
         back_populates='users'
     )
 
-    sender = db.relationship(
-        "User",
-        secondary="direct_messages",
-        primaryjoin=(id == DirectMessage.sender_id),
-        secondaryjoin=(id == DirectMessage.recipient_id),
-    )
-
-    direct_messages2 = db.relationship(
-        "User",
-        secondary="direct_messages",
-        primaryjoin=(id == DirectMessage.recipient_id),
-        secondaryjoin=(id == DirectMessage.sender_id),
-    )
-
     @property
     def password(self):
         return self.hashed_password

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4a08a74750e8
+Revision ID: 8d7b601482f6
 Revises: 
-Create Date: 2023-05-22 13:42:33.082653
+Create Date: 2023-05-24 16:02:41.542204
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4a08a74750e8'
+revision = '8d7b601482f6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,6 +29,16 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+    op.create_table('direct_messages',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('message', sa.String(length=255), nullable=False),
+    sa.Column('sent_at', sa.String(length=100), nullable=False),
+    sa.Column('sender_id', sa.Integer(), nullable=True),
+    sa.Column('recipient_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['recipient_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['sender_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('groups',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -71,5 +81,6 @@ def downgrade():
     op.drop_table('comments')
     op.drop_table('posts')
     op.drop_table('groups')
+    op.drop_table('direct_messages')
     op.drop_table('users')
     # ### end Alembic commands ###
