@@ -4,4 +4,3 @@ from .db import environment, SCHEMA
 from .comments import Comment
 from .post import Post
 from .groups import Group
-from .direct_messages import DirectMessage
