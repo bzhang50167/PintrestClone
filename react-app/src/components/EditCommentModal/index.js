@@ -14,9 +14,9 @@ const EditCommentModal = (id) => {
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
     }, [dispatch, commentId])
-    
+
     useEffect(() => {
-        if(text === undefined || !text){
+        if (text === undefined || !text) {
             setText(comment.text)
         }
     })
@@ -32,17 +32,22 @@ const EditCommentModal = (id) => {
             </h1>
             <form>
                 <div>
-                    <input
-                        type="text"
+                    <textarea
                         value={text}
+                        cols={33}
+                        rows={3}
+                        className="edit-textarea"
                         placeholder={comment.text}
                         onChange={e => setText(e.target.value)}
                     />
-                    <button
-                        type="submit"
-                        onClick={handleEdit}>
-                        Edit
-                    </button>
+                    <div>
+
+                        <button
+                            type="submit"
+                            onClick={handleEdit}>
+                            Edit
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

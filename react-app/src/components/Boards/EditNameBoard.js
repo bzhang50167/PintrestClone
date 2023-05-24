@@ -8,19 +8,35 @@ const EditNameofBoard = (board) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const { closeModal } = useModal()
-    const [name, setName] = useState('')
+    const [name, setName] = useState(board.board.name)
+	const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
-        // e.preventDefault()
-        const info = {
-            user_id: user.id,
-            name: name
+    console.log(board.board.name);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        if(name.length > 40){
+            setErrors([
+                'Keep name of board under 40 characters!!'
+            ])
+            return
+        } else {
+            const info = {
+                user_id: user.id,
+                name: name
+            }
+            await dispatch(editBoardNameThunk(info, board.board.id))
+            closeModal()
         }
-        // console.log(info);
-        dispatch(editBoardNameThunk(info, board.board.id))
+
     }
     return (
         <div>
+            <ul className="error">
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
             <form onSubmit={handleSubmit}>
                 <label>
                     name:

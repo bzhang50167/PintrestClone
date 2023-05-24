@@ -15,7 +15,7 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!email.includes('@') || email.length < 5) {
+		if (!email.includes('@') || email.length < 5 || !email.includes('.')) {
 			setErrors([
 				"Must be valid Email"
 			])
@@ -60,7 +60,7 @@ function SignupFormModal() {
 					<label>
 						Email
 						<input
-							type="text"
+							type="email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required

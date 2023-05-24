@@ -38,14 +38,18 @@ const SubmitBar = (sessionUser) => {
     return (
         <div>
             <div className='bar'>
-                <img className="user-image" src={user?.profilePic} />
+            {user.profilePic !== null ? (
+                    <img className="user-image" src={user.profilePic} />
+                ) : <img className="user-image" src="https://mangterest-pic.s3.amazonaws.com/11109d2e46ec49e2b8ca2eaa57bb3f86.jpg" />
+                }
                 <div className='inside-bar'>
-                    <input
-                        type='text'
+                     <textarea
                         value={comment}
+                        cols={33}
+                        rows={3}
+                        className="edit-textarea"
                         placeholder='Add a comment'
                         onChange={e => setComment(e.target.value)}
-                        required
                     />
                     <div type='submit' onClick={handleSubmit}>
                         <spam>
