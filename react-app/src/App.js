@@ -13,6 +13,8 @@ import UserPage from "./components/UserPage";
 import PostorBoard from "./components/UserPage/PostorBoard";
 import BoardShow from "./components/Boards/BoardShow";
 import SearchPost from "./components/Posts/Search";
+import Chat from "./components/DirectMessage.js/directmessage";
+import MessageThreads from "./components/MessageThreads/messagethreads";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +55,12 @@ function App() {
           </Route>
           <Route exact path='/search'>
             <SearchPost />
+          </Route>
+          <Route path='/directmessage/:userId/:ownerId' exact={true}>
+            <Chat/>
+          </Route>
+          <Route path='/test' exact={true}>
+            <MessageThreads/>
           </Route>
         </Switch>
       )}
