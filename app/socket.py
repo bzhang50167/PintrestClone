@@ -4,7 +4,7 @@ from app.models import DirectMessage, db
 socketio = SocketIO()
 
 if os.environ.get("FLASK_ENV") == "production":
-    origins = ['https://mangaterest.onrender.com']
+    origins = ['https://mangaterest.onrender.com','http://mangaterest.onrender.com']
 else:
     origins = "*"
 
