@@ -12,10 +12,12 @@ button{
     margin-bottom: 10px;
 }
 
-#modal-content{
+#modal-content {
     border-radius: 10px;
     padding: 20px;
-    background-image: linear-gradient(to bottom right, rgb(170, 49, 170), rgb(236, 192, 237));
+    background-image: url("https://mangterest-pic.s3.us-west-1.amazonaws.com/926edeb40340465596c1b7a33e5aea11.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 input{

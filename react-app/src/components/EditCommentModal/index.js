@@ -10,6 +10,7 @@ const EditCommentModal = (id) => {
     const [text, setText] = useState('')
     const commentId = +id.id
     const { closeModal } = useModal();
+    const [errors, setErrors] = useState([]);
 
     useEffect(() => {
         dispatch(getCommentByIdThunk(commentId))
@@ -22,11 +23,25 @@ const EditCommentModal = (id) => {
     })
 
     const handleEdit = async (e) => {
-        await dispatch(editCommentThunk(commentId, text))
-        closeModal()
-    }
+        e.preventDefault();
+
+        if (text === '') {
+            setErrors(["Can't leave description empty"]);
+        } else if (text.length > 100) {
+            setErrors(['Please keep comments under 100 characters']);
+        } else {
+            setErrors([]); // Clear any previous errors
+            await dispatch(editCommentThunk(commentId, text));
+            closeModal();
+        }
+    };
     return (
         <div className="edit-comment-div">
+            <ul className="error">
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
             <h1>
                 EDIT COMMENT
             </h1>

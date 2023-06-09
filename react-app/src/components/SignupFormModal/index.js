@@ -21,11 +21,11 @@ function SignupFormModal() {
 			])
 		} else if (username.length > 30) {
 			setErrors([
-				"Must have shorter Username"
+				"Must have username shorter than 30 characters"
 			])
-		} else if (username.length < 4) {
+		} else if (username.length < 3) {
 			setErrors([
-				"Must have longer Username"
+				"Must have username longer than 3 characters"
 			])
 		} else if (password.length < 6) {
 			setErrors([
@@ -47,7 +47,9 @@ function SignupFormModal() {
 
 	return (
 		<div className="signup-page">
+			<div className="signuptext">
 			<h1>Sign Up</h1>
+			</div>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<ul className="error">
@@ -61,6 +63,7 @@ function SignupFormModal() {
 						Email
 						<input
 							type="email"
+							className="sighupinput"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required
@@ -72,6 +75,7 @@ function SignupFormModal() {
 						Username
 						<input
 							type="text"
+							className="sighupinput"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
 							required
@@ -83,6 +87,7 @@ function SignupFormModal() {
 						Password
 						<input
 							type="password"
+							className="sighupinput"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
@@ -94,6 +99,7 @@ function SignupFormModal() {
 						Confirm Password
 						<input
 							type="password"
+							className="sighupinput"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							required

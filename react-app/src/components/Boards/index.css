@@ -10,28 +10,33 @@
     margin: 19px;
     border-radius: 10px;
     box-shadow: 10px 10px 10px darkgray;
+    transition: filter 1.5s
+
 }
 
 .other-page:hover {
     filter: brightness(0.7);
     scale: 1.02;
     cursor: pointer;
+    transition: filter 0.5s
+
 }
 
-.mainpic{
+.mainpic {
     height: 240px;
     width: 120px;
     overflow: hidden;
     object-fit: cover;
+    vertical-align: bottom;
 }
 
-.otherpic{
+.otherpic {
     height: 120px;
     width: 120px;
     overflow: hidden;
     object-fit: cover;
+    vertical-align: bottom;
 }
-
 .mainimg{
     display: flex;
 }
