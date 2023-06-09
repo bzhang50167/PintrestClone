@@ -4,12 +4,16 @@ import session from './session'
 import postReducer from './post';
 import commentReducer from './comment';
 import boardReducer from './boards';
+import threadsReducer from './threads';
+import messageReducer from './messages';
 
 const rootReducer = combineReducers({
   session,
   post: postReducer,
   comments: commentReducer,
   boards: boardReducer,
+  messages:messageReducer,
+  threads:threadsReducer
 });
 
 

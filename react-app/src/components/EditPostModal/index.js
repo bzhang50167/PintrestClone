@@ -20,13 +20,17 @@ const EditPostModal = (id) => {
     useEffect(() => {
         dispatch(getPostByIdThunk(postId))
     }, [dispatch, postId])
-    console.log(errors,'errros~~~~~~');
 
-    const handleSubmit = async () => {
-
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         if(text === ''){
             setErrors([
                 "Can't leave discription empty"
+            ])
+        }
+        else if(title.length > 40){
+            setErrors([
+                "Keep title under 40 characters"
             ])
         }
         else if (title === ''){

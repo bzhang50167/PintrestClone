@@ -53,7 +53,7 @@ const SplashPage = () => {
     return (
         <div className="spash-page">
             <div className="spash-page">
-                <h1 className="spash-page">FIND SOME NEW TITLES</h1>
+                <h1 className="spash-page">Mangterest: Where Every Page Unveils a New Adventure!</h1>
             </div>
             <Carousel
                 infinite={true}
