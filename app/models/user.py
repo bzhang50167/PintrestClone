@@ -33,16 +33,19 @@ class User(db.Model, UserMixin):
     )
 
     sender = db.relationship(
-        "User",
-        secondary="direct_messages",
-        primaryjoin=(id == DirectMessage.sender_id),
-        secondaryjoin=(id == DirectMessage.recipient_id),
+    "User",
+    secondary="direct_messages",
+    primaryjoin=(id == DirectMessage.sender_id),
+    secondaryjoin=(id == DirectMessage.recipient_id),
+    backref=db.backref("recipients", lazy="dynamic"),
     )
+
     direct_messages2 = db.relationship(
-        "User",
-        secondary="direct_messages",
-        primaryjoin=(id == DirectMessage.recipient_id),
-        secondaryjoin=(id == DirectMessage.sender_id),
+    "User",
+    secondary="direct_messages",
+    primaryjoin=(id == DirectMessage.recipient_id),
+    secondaryjoin=(id == DirectMessage.sender_id),
+    backref=db.backref("senders", lazy="dynamic"),
     )
 
 
