@@ -50,9 +50,6 @@ class User(db.Model, UserMixin):
         backref=db.backref("direct_messages2", lazy="dynamic")
     )
 
-
-
-
     @property
     def password(self):
         return self.hashed_password
