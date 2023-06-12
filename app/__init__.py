@@ -40,7 +40,6 @@ app.register_blueprint(message_routes, url_prefix='/api/messages')
 db.init_app(app)
 Migrate(app, db)
 
-socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -103,3 +102,5 @@ def not_found(e):
 
 if __name__ == '__main__':
     socketio.run(app)
+
+socketio.init_app(app)

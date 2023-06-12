@@ -42,10 +42,11 @@ class User(db.Model, UserMixin):
     direct_message2 = db.relationship(
         'User',
         secondary='direct_messages',
-        primaryjoin = (id == DirectMessage.recipient_id),
-        secondaryjoin= (id == DirectMessage.sender_id),
+        primaryjoin=(id == DirectMessage.recipient_id),
+        secondaryjoin=(id == DirectMessage.sender_id),
         back_populates='sender'
     )
+
 
     @property
     def password(self):
