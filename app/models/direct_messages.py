@@ -15,9 +15,9 @@ class DirectMessage(db.Model):
     sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     recipient_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-    sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_messages')
-    recipient = db.relationship('User', foreign_keys=[recipient_id], backref='received_messages')
-    table = db.Table('table_name', db.metadata, autoload=True, autoload_with=db.engine)
+    # sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_messages')
+    # recipient = db.relationship('User', foreign_keys=[recipient_id], backref='received_messages')
+
     def to_dict(self):
         return {
             'id': self.id,
