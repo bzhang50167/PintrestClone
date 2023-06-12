@@ -8,24 +8,35 @@ post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/')
 def get_all_posts():
+    """
+    querys for all posts
+    return post in a dictonary
+    """
     posts = Post.query.all()
     post_list = [post.to_dict() for post in posts]
     return jsonify(post_list)
 
 @post_routes.route('/<int:id>')
 def get_post_by_id(id):
+    """
+    queries for post by id
+    return post in a dictonary
+    """
     post = Post.query.get(id)
     return jsonify(post.to_dict())
 
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def create_post():
-    print('in the route ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    """
+    creates form with postform data
+    validated csrf token and formdata
+    uploads image to s3 bucket
+    returns post in dictonary form
+    """
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data,'+++++++++++++++++++++++++++++++++')
     if form.validate_on_submit():
-        print('GOT PASS VALIDATIONS <=========================')
         post_picture = form.data['image_url']
         post_picture.filename = get_unique_filename(post_picture.filename)
         upload = upload_file_to_s3(post_picture)
@@ -52,15 +63,18 @@ def create_post():
 @post_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def update_post(id):
-    print('in the route +++++++++++++++++++++++++++')
+    """
+    queries for post by id
+    created form with editpostoform data
+    verifies csrf token and form data
+    return post with updated data
+    """
     post = Post.query.get(id)
     form = EditPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('=====================>', form.data)
     if form.validate_on_submit():
         post.text = form.data['text']
         post.title = form.data['title']
-        print(post.text, '<=====================')
         db.session.commit()
         return jsonify(post.to_dict())
     else:
@@ -69,6 +83,10 @@ def update_post(id):
 @post_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
 def delete_post(id):
+    """
+    queries for post by id
+    delete queried post
+    """
     post = Post.query.get(id)
 
     if not post:
@@ -86,6 +104,10 @@ def delete_post(id):
 
 @post_routes.route('/search')
 def search_post():
+    """
+    querys for data with given query
+    returns post with query in a list
+    """
     query = request.args.get('query')
 
     if not query:

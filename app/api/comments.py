@@ -8,17 +8,28 @@ comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route('/')
 def get_all_comments():
+    """
+    querys for all comments
+    """
     comments = Comment.query.all()
     comment_list = [comment.to_dict() for comment in comments]
     return jsonify(comment_list)
 
 @comment_routes.route('/<int:id>')
 def get_comment_by_id(id):
+    """
+    querys for comment by id
+    """
     comment = Comment.query.get(id)
     return jsonify(comment.to_dict())
 
 @comment_routes.route('/new', methods=['POST'])
 def create_comment():
+    """
+    creates form
+    verifys csrf token and form data
+    creates new comment with given information
+    """
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data, '<===============================')
@@ -37,6 +48,12 @@ def create_comment():
 
 @comment_routes.route('/<int:id>/edit', methods=['PUT'])
 def edit_comment(id):
+    """
+    querys for comment by id
+    creates edit form
+    verify csrf token as well as formdata
+    returns comment with new formdata
+    """
     print('IN THE ROUTES <=====================')
     comment = Comment.query.get(id)
     form = EditCommentForm()
@@ -54,6 +71,10 @@ def edit_comment(id):
 @comment_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
 def delete_comment(id):
+    """
+    querys for comment by id
+    deletes comment that was queried by the id
+    """
     comment = Comment.query.get(id)
     if not comment:
         return 'Comment Does Not Exist'

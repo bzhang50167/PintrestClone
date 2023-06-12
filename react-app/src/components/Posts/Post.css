@@ -24,7 +24,6 @@
     margin-top: 30px;
     border-radius: 10px;
     transition: filter 1.5s
-
 }
 
 .new-post-title{
@@ -53,6 +52,7 @@
 .all-post-page {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row-reverse;
     justify-content: flex-end;
     position: relative;
 }
