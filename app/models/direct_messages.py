@@ -17,7 +17,7 @@ class DirectMessage(db.Model):
 
     sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_messages')
     recipient = db.relationship('User', foreign_keys=[recipient_id], backref='received_messages')
-
+    db.Table('direct_messages', db.metadata, autoload=True)  
     def to_dict(self):
         return {
             'id': self.id,
@@ -25,4 +25,3 @@ class DirectMessage(db.Model):
             'sender_id': self.sender_id,
             'recipient_id': self.recipient_id
         }
-
