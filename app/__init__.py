@@ -36,10 +36,11 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(comment_routes, url_prefix='/comments')
 app.register_blueprint(post_routes, url_prefix='/posts')
 app.register_blueprint(group_routes, url_prefix='/groups')
-app.register_blueprint(message_routes, url_prefix='/api/messages')
+app.register_blueprint(message_routes, url_prefix='/api/message')
 db.init_app(app)
 Migrate(app, db)
 
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -102,5 +103,3 @@ def not_found(e):
 
 if __name__ == '__main__':
     socketio.run(app)
-
-socketio.init_app(app)

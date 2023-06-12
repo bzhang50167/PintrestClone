@@ -1,8 +1,14 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import DirectMessage, db, User
+from app.models import User, db, DirectMessage
+from app.forms import LoginForm
+from app.forms import SignUpForm
+from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import or_, and_
 
 message_routes = Blueprint('message', __name__)
 
+
+#! Get All Messages Route
 @message_routes.route('/<sender_id>/<recipient_id>')
 def get_all_dms(sender_id, recipient_id):
     #Query all dms from the database between 2 users where the id's line up
@@ -31,6 +37,7 @@ def get_all_dms(sender_id, recipient_id):
         dm_list.append(dm_dict)
     return dm_list
 
+#! Get all Message Threads Route
 @message_routes.route('/threads/<id>')
 def get_all_threads(id):
     #Query all Direct Messages where the user was the sender

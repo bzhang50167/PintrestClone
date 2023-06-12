@@ -33,18 +33,16 @@ class User(db.Model, UserMixin):
     )
 
     sender = db.relationship(
-        'User',
-        secondary='direct_messages',
+        "User",
+        secondary="direct_messages",
         primaryjoin=(id == DirectMessage.sender_id),
         secondaryjoin=(id == DirectMessage.recipient_id),
-        back_populates='direct_message2'
     )
-    direct_message2 = db.relationship(
-        'User',
-        secondary='direct_messages',
+    direct_messages2 = db.relationship(
+        "User",
+        secondary="direct_messages",
         primaryjoin=(id == DirectMessage.recipient_id),
         secondaryjoin=(id == DirectMessage.sender_id),
-        back_populates='sender'
     )
 
 
