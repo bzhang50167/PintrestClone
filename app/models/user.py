@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .direct_message import DirectMessage
+from .direct_messages import DirectMessage
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -36,13 +36,15 @@ class User(db.Model, UserMixin):
         'User',
         secondary='direct_messages',
         primaryjoin=(id == DirectMessage.sender_id),
-        secondaryjoin=(id == DirectMessage.recipient_id)
+        secondaryjoin=(id == DirectMessage.recipient_id),
+        back_populates='direct_message2'
     )
     direct_message2 = db.relationship(
         'User',
         secondary='direct_messages',
         primaryjoin = (id == DirectMessage.recipient_id),
-        secondaryjoin= (id == DirectMessage.sender_id)
+        secondaryjoin= (id == DirectMessage.sender_id),
+        back_populates='sender'
     )
 
     @property

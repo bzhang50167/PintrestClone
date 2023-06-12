@@ -9,14 +9,8 @@ class DirectMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(5000), nullable=False)
     sent_at = db.Column(db.String(100), nullable=False)
-    #? Foreign Keys
     sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     recipient_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    #! One Side Relationship
-
-    #! Many Side Relationship
-    # sender = db.relationship('User', back_populates='sender')
-    # recipient = db.relationship('User',back_populates='recipient')
 
     def to_dict(self):
         return {
