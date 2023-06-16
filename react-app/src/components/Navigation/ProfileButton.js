@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
   };
- 
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
       <div onClick={openMenu}>
         <FaUserCircle className="user-icon" />
       </div>
-      <ul className={ulClassName} ref={ulRef}>
+      <ul className={ulClassName} ref={ulRef} onClick={closeMenu}>
         {user ? (
           <>
             <li>{user.username}</li>

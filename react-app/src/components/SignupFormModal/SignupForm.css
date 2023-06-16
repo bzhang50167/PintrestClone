@@ -19,3 +19,20 @@
     align-items: center;
     margin-left: 164px;
 }
+
+.signup-imput-name{
+    width: 230px;
+}
+
+.namediv{
+    display: flex;
+    gap: 20px;
+}
+
+.sighupinputname{
+    width: 230px;
+}
+
+.lastnamecolor{
+    color: white;
+}

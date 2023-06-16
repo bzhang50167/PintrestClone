@@ -8,6 +8,8 @@ function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
+	const [firstname, setFirstName] = useState("")
+	const [lastname, setLastName] = useState("")
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -36,7 +38,14 @@ function SignupFormModal() {
 				"Confirm Password field must be the same as the Password field",
 			]);
 		} else if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const info = {
+				username:username,
+				email:email,
+				password:password,
+				first_name:firstname,
+				last_name:lastname
+			}
+			const data = await dispatch(signUp(info));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -48,7 +57,7 @@ function SignupFormModal() {
 	return (
 		<div className="signup-page">
 			<div className="signuptext">
-			<h1>Sign Up</h1>
+				<h1>Sign Up</h1>
 			</div>
 			<form onSubmit={handleSubmit}>
 				<div>
@@ -81,6 +90,32 @@ function SignupFormModal() {
 							required
 						/>
 					</label>
+				</div>
+				<div className="namediv">
+					<div className="signup-imput-name">
+						<label>
+							First Name
+							<input
+								type="text"
+								className="sighupinputname"
+								value={firstname}
+								onChange={(e) => setFirstName(e.target.value)}
+								required
+							/>
+						</label>
+					</div>
+					<div className="signup-imput-name">
+						<label className="lastnamecolor">
+							Last Name
+							<input
+								type="text"
+								className="sighupinputname"
+								value={lastname}
+								onChange={(e) => setLastName(e.target.value)}
+								required
+							/>
+						</label>
+					</div>
 				</div>
 				<div className="signup-imput">
 					<label>

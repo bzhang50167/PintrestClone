@@ -24,26 +24,29 @@ const EditUserModal = (id) => {
     }, [user])
 
     const handleSubmit = async (e) => {
-        if (firstName === null) {
+        if (firstName === '') {
             setErrors([
                 'first name is required'
             ])
         }
-        if (lastName === null) {
+        if (lastName === '') {
             setErrors([
                 'last name is required'
             ])
         }
-        const formData = new FormData()
-        formData.append('first_name', firstName)
-        formData.append('last_name', lastName)
-        if (img) {
-            formData.append('profile_pic', img)
+        if(errors){
+            return errors
+        } else {
+
+            const formData = new FormData()
+            formData.append('first_name', firstName)
+            formData.append('last_name', lastName)
+            if (img) {
+                formData.append('profile_pic', img)
+            }
+
+            await dispatch(editUserThunk(+id.id, formData))
         }
-
-        console.log(formData, 'formdata <=====');
-
-        await dispatch(editUserThunk(+id.id, formData))
     }
     return (
         <div>
