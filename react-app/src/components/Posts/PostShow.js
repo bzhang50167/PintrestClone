@@ -12,7 +12,7 @@ import { getAllCommentsThunk } from "../../store/comment";
 import EditCommentModal from "../EditCommentModal";
 import DeleteCommentModal from "../DeleteCommentModal";
 import AddtoBoard from "../Boards/AddtoBoardForm";
-
+import Loadingpage from "../loadingpage";
 
 const OnePost = () => {
     const post = useSelector(state => state.post.onePost)
@@ -32,7 +32,9 @@ const OnePost = () => {
     }, [dispatch, comment.length])
 
     const comments = post.comments
-
+    if(!post || post.id !== parseInt(id)){
+        return <Loadingpage />
+    }
     return (
         <div className="whole-page-single">
             <div className="single-post-page">
