@@ -6,8 +6,8 @@ const Loadingpage = () => {
         <div className="loading-page">
             <ClipLoader
             loading={true}
-            color="#36d7b7"
-            size={150}
+            color="#c161d4"
+            size={175}
             />
         </div>
     )

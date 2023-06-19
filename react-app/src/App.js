@@ -16,6 +16,7 @@ import SearchPost from "./components/Posts/Search";
 import Chat from "./components/DirectMessage.js/directmessage";
 import MessageThreads from "./components/MessageThreads/messagethreads";
 import PageNotFound from "./components/PageNotFound";
+import Loadingpage from "./components/loadingpage";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function App() {
             <Chat/>
           </Route>
           <Route path='/test' exact={true}>
-            <MessageThreads/>
+            <Loadingpage />
           </Route>
           <Route>
             <PageNotFound />
