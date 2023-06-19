@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .direct_messages import DirectMessage
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -10,25 +11,27 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(255))
 
-    posts = db.relationship(
-        'Post',
-        back_populates='users'
-    )
+    posts = db.relationship('Post', back_populates='users')
+    comments = db.relationship('Comment', back_populates='users')
+    groups = db.relationship('Group', back_populates='users')
 
-    comments = db.relationship(
-        'Comment',
-        back_populates='users'
+    sender = db.relationship(
+        "User",
+        secondary="direct_messages",
+        primaryjoin=(id == DirectMessage.sender_id),
+        secondaryjoin=(id == DirectMessage.recipient_id),
     )
-
-    groups = db.relationship(
-        'Group',
-        back_populates='users'
+    direct_messages2 = db.relationship(
+        "User",
+        secondary="direct_messages",
+        primaryjoin=(id == DirectMessage.recipient_id),
+        secondaryjoin=(id == DirectMessage.sender_id),
     )
 
     @property

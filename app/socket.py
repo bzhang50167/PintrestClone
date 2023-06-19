@@ -1,6 +1,6 @@
 from flask_socketio import SocketIO, emit
 import os
-from app.models import DirectMessage, db
+from app.models import DirectMessage,db
 socketio = SocketIO()
 
 if os.environ.get("FLASK_ENV") == "production":

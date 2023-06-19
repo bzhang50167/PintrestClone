@@ -12,7 +12,6 @@ export const getDMS = (userId, ownerId) => async (dispatch) => {
     if (res.ok){
         const messages = await res.json()
         dispatch(getMessages(messages))
-        return messages
     }else throw new Error("Bad Request")
 }
 

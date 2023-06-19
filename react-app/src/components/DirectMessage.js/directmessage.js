@@ -15,8 +15,6 @@ const Chat = () => {
     if(dms){
         messageList = Object.values(dms)
     }
-    console.log(chatInput,'chat input');
-    console.log(messages, 'messages');
     const {userId, ownerId} = useParams()
     const dispatch = useDispatch()
     useEffect(() => {
@@ -27,7 +25,6 @@ const Chat = () => {
         socket.on("chat", (chat) => {
             // Whenver a chat is sent, Dispatch our fetch to get all messages and set the messages to the returned list
             let msg = dispatch(getDMS(userId,ownerId))
-            console.log(msg,'what is this');
             let msgArr = Object.values(msg)
             setMessages(...msgArr)
             console.log(messages)
