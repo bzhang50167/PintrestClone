@@ -7,7 +7,6 @@ const PostorBoard = () => {
     const [classname, setClassname] = useState('')
     const { id } = useParams()
 
-    console.log(typeof(+id));
 
     return (
         <div>

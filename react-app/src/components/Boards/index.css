@@ -100,3 +100,7 @@
 .modal-fit{
     display: flex;
 }
+
+.add-to-board:hover{
+    cursor: pointer;
+}

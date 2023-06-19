@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton"
 import RemoveFromBoard from "./RemoveFromBoard"
 import DeleteBoardModal from "./DeleteBoardModal"
 import EditNameofBoard from "./EditNameBoard"
+import Loadingpage from "../loadingpage"
 
 const BoardShow = () => {
     const board = useSelector(state => state.boards.oneBoard)
@@ -21,15 +22,13 @@ const BoardShow = () => {
         // dispatch(getOneBoardThunk())
     }
 
-    console.log(board.groupPost?.length);
-
     useEffect(() => {
         dispatch(getOneBoardThunk(id))
         setPostLength(board.groupPost?.length)
     }, [dispatch, board.groupPost?.length])
 
     if (!board.groupPost) {
-        return null
+        return <Loadingpage />
     }
 
     if (board.groupPost.length !== postLength) {

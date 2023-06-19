@@ -3,8 +3,6 @@ import { useModal } from "../../context/Modal";
 import { removePostThunk } from "../../store/boards";
 
 const RemoveFromBoard = ({postId,boardId}) => {
-    console.log(postId,'postid');
-    console.log(boardId, 'boardId');
     const dispatch = useDispatch()
     const { closeModal } = useModal();
 

@@ -6,7 +6,6 @@ import { useModal } from "../../context/Modal";
 const DeleteBoardModal = (id) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    console.log(+id.id);
     const { closeModal } = useModal();
 
     const handleDelete = () => {

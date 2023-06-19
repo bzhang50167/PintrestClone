@@ -11,8 +11,6 @@ const EditNameofBoard = (board) => {
     const [name, setName] = useState(board.board.name)
 	const [errors, setErrors] = useState([]);
 
-    console.log(board.board.name);
-
     const handleSubmit = async(e) => {
         e.preventDefault()
         if(name.length > 40){

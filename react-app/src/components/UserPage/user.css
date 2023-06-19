@@ -59,9 +59,12 @@
     margin-left: 38px;
     margin-right: 20px;
     font-size: large;
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 0;
 }
 
 .button-button:hover{
-    background-color: darkgray;
-    border-radius: 20px;
+    border-bottom: 2px solid black;
 }

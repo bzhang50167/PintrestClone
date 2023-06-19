@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBoardsThunk } from "../../store/boards";
 import './index.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import Loadingpage from "../loadingpage";
 
 const GetAllBoard = (id) => {
     const allBoards = useSelector((state) => state.boards.allBoards);
@@ -15,7 +16,9 @@ const GetAllBoard = (id) => {
 
     const boards = Object.values(allBoards);
     const userBoard = boards.filter(board => board.userId === (+id.id))
-
+    if(!allBoards){
+        return <Loadingpage />
+    }
     return (
         <div className="whole-page">
             {userBoard.map((board) => (

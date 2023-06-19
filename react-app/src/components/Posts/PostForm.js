@@ -49,7 +49,6 @@ const PostForm = () => {
             formData.append('title', title)
             formData.append('image_url', file)
 
-            console.log(formData);
             history.push('/home')
             await dispatch(createPostThunk(formData))
         }

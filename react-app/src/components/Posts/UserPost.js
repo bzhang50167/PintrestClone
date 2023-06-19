@@ -4,20 +4,16 @@ import { useHistory } from "react-router-dom"
 import { getAllPostThunk } from "../../store/post"
 import { getAllUserThunk } from "../../store/session"
 import Masonry from "react-masonry-css";
+import Loadingpage from "../loadingpage"
 
 const UserPost = (id) => {
     const allPostObj = useSelector(state => state.post.allPost)
     const userId = (+id.id)
     const allPost = Object.values(allPostObj)
-    const allUser = useSelector(state => state.session)
-    console.log(userId);
-    console.log(allPost.map(post => post.userId));
-
     const userPosts = allPost.filter(post => post.userId === userId);
 
     const history = useHistory('')
     const dispatch = useDispatch()
-    console.log(allPost,'userPost');
 
     useEffect(() => {
         dispatch(getAllPostThunk())
@@ -30,6 +26,10 @@ const UserPost = (id) => {
         1025: 2,
         693: 1
     };
+
+    if(!allPost || !userPosts){
+        return <Loadingpage />
+    }
 
     return (
         <div>

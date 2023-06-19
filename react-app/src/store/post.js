@@ -99,8 +99,6 @@ export const editPostThunk = (id , formData) => async dispatch => {
     if(res.ok){
         const data = await res.json()
         dispatch(editPostAction(data))
-    } else {
-        console.log('not working');
     }
 }
 

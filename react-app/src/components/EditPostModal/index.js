@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useModal } from "../../context/Modal";
 
 const EditPostModal = (id) => {
-    // console.log(postId);
     const post = useSelector(state => state.post.onePost)
     const { closeModal } = useModal();
     const dispatch = useDispatch()

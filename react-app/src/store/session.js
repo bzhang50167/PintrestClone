@@ -83,7 +83,6 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (info) => async (dispatch) => {
-	console.log(info,'datapassed in');
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -110,11 +109,8 @@ export const getAllUserThunk = () => async dispatch => {
 	const res = await fetch('/api/users/')
 
 	if (res.ok){
-		console.log('it is working');
 		const data = await res.json()
 		dispatch(getAllUserAction(data))
-	} else {
-		console.log('it is not working');
 	}
 }
 
@@ -126,7 +122,6 @@ export const editUserThunk = (userId, formData) => async dispatch => {
 
 	if(res.ok){
 		const data = await res.json()
-		console.log(data, 'data in the thunk');
 		dispatch(editUserAction(data))
 	}
 }
@@ -141,7 +136,6 @@ export default function reducer(state = initialState, action) {
 			return { user: null };
 		case GET_ALL_USER: {
 			const newState = {...state, user: {...state.user}, allUser:{...state.allUser}}
-			console.log(action.data.users, 'action');
 			action.data.users.forEach(user => newState.allUser[user.id] = user)
 			return newState
 		}

@@ -80,12 +80,6 @@ export const addImageThunk = (data) => async dispatch => {
         },
         body: JSON.stringify(data)
     })
-
-    if (res.ok){
-        console.log('it working');
-    } else {
-        console.log('it broken');
-    }
 }
 
 export const removePostThunk = (post_id, board_id) => async dispatch => {
@@ -96,8 +90,6 @@ export const removePostThunk = (post_id, board_id) => async dispatch => {
     if (res.ok){
         const data = await res.json()
         dispatch(getOneBoardAction(data))
-    } else {
-        console.log('it broken');
     }
 }
 
@@ -108,9 +100,6 @@ export const deleteBoardThunk = (boardId) => async dispatch => {
 
     if(res.ok){
         dispatch(deleteBoardAction(boardId))
-        console.log('it is ok');
-    } else {
-        console.log('not okay');
     }
 }
 
@@ -134,7 +123,6 @@ const boardReducer = (state = initalState, action) => {
     switch(action.type){
         case GET_ALL_BOARDS: {
             const newState = {...state, allBoards:{...state.allBoards}, oneBoard:{}}
-            console.log(action.data,'action in the reducer');
             action.data.forEach(board => newState.allBoards[board.id] = board)
             return newState
         }

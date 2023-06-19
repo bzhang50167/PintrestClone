@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { getAllUserThunk } from "../../store/session"
 import BoardForm from "../Boards/BoardForm"
 import EditUserModal from "../EditUserModal"
+import Loadingpage from "../loadingpage"
 
 const UserPage = () => {
     const user = useSelector(state => state.session.allUser)
@@ -17,7 +18,7 @@ const UserPage = () => {
     }, [dispatch])
 
     if (!user) {
-        return null
+        return <Loadingpage />
     }
     return (
         <div className="page">

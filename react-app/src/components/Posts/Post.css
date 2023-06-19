@@ -51,8 +51,8 @@
 
 .all-post-page {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    flex-direction: row;
     justify-content: flex-end;
     position: relative;
 }
@@ -84,8 +84,10 @@
 }
 
 .image-border {
+    position: sticky;
     border-radius: 40px;
     max-width: 100vh;
+    border: 2px solid black;
 }
 
 .single-post-info {

@@ -43,7 +43,7 @@ const AllPost = () => {
                 className="all-post-page"
                 columnClassName="work-now"
             >
-                {posts?.map(post => (
+                {posts.reverse().map(post => (
                     <div className="otherstuff" key={post?.id} onClick={scrollToTop}>
                         <div
                             className="individual-post"
