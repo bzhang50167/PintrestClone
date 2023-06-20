@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import './follow.css'
 import { useEffect } from "react"
-import { getAllUserThunk } from "../../store/session"
+import { getAllUserThunk, removeFollowerThunk } from "../../store/session"
 import Loadingpage from "../loadingpage"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
@@ -14,7 +14,6 @@ const ShowFollowing = () => {
     useEffect(() => {
         dispatch(getAllUserThunk())
     }, [dispatch])
-
     if (!user || !allUser) {
         return <Loadingpage />
     }
@@ -25,16 +24,21 @@ const ShowFollowing = () => {
                 <div className="following-page">
                     {user.following.map(id => {
                         return (
-                            <div className="main-box" onClick={e => history.push(`/user/${id}`)}>
+                            <div className="main-box">
                                 <div>
-                                    <img className="follower-image" src={allUser[id].profilePic} />
+                                    <img onClick={e => history.push(`/user/${id}`)} className="follower-image" src={allUser[id].profilePic} />
                                 </div>
                                 <div>
                                     <div className="username">
                                         {allUser[id].username}
                                     </div>
-                                    <div className="username">
-                                        {allUser[id].firstName} {allUser[id].lastName}
+                                    <div className="bottomdiv">
+                                        <div className="username">
+                                            {allUser[id].firstName} {allUser[id].lastName}
+                                        </div>
+                                        <div>
+                                            <button onClick={e => dispatch(removeFollowerThunk(user.id, id))}>remove</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

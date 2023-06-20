@@ -16,15 +16,20 @@
 
 .following-page{
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .follower-image{
     border-radius: 17px;
     border-bottom: solid black 2px;
-    max-width: 300px;
-    max-height: 300px;
+    width: 210px;
+    height: 210px;
     overflow: hidden;
     object-fit: cover;
+}
+
+.bottomdiv{
+    display: flex;
+    justify-content: space-between;
 }
