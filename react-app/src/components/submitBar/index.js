@@ -46,7 +46,7 @@ const SubmitBar = (sessionUser) => {
                      <textarea
                         value={comment}
                         cols={33}
-                        rows={3}
+                        rows={2}
                         className="edit-textarea"
                         placeholder='Add a comment'
                         onChange={e => setComment(e.target.value)}

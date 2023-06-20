@@ -19,7 +19,7 @@ def seed_groups(seeded_users, seeded_posts):
         'Idol'
     ]
 
-    for i in range(12):
+    for i in range(210):
         group_posts = []
         for j in range(3):
             group_posts.append(seeded_posts[(i + j) % len(seeded_posts)])

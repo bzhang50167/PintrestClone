@@ -55,8 +55,8 @@ function Navigation({ isLoaded }) {
       </ul>
       <ul>
         <span>
-          <a href="https://github.com/bzhang50167" target="_blank"><BsGithub /></a>
-          <a href="https://www.linkedin.com/in/bao-heng-zhang-b43731256/" target="_blank"><BsLinkedin /></a>
+          <a rel='norel' href="https://github.com/bzhang50167" target="_blank"><BsGithub /></a>
+          <a rel='norel' href="https://www.linkedin.com/in/bao-heng-zhang-b43731256/" target="_blank"><BsLinkedin /></a>
         </span>
       </ul>
       {isLoaded && (

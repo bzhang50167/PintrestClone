@@ -180,6 +180,10 @@
     margin-bottom: 1px;
 }
 
+.post-title:hover{
+    cursor: pointer;
+}
+
 .comment-spacing-div {
     /* margin: 10px 0px; */
     word-wrap: break-word;
@@ -187,7 +191,11 @@
 
 .word-break {
     word-wrap: break-word;
+}
 
+.user-image-user{
+    display: flex;
+    align-items: center;
 }
 
 .fit-content{

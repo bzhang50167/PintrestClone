@@ -1,0 +1,30 @@
+.main-box{
+    display: flex;
+    border: 3px solid black;
+    flex-direction: column;
+    width: fit-content;
+    border-radius: 20px;
+    transition: filter 1.5s
+}
+
+.main-box:hover {
+    filter: brightness(0.4);
+    cursor: pointer;
+    scale: 1.04;
+    transition: filter 0.5s
+}
+
+.following-page{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.follower-image{
+    border-radius: 17px;
+    border-bottom: solid black 2px;
+    max-width: 300px;
+    max-height: 300px;
+    overflow: hidden;
+    object-fit: cover;
+}

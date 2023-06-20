@@ -68,7 +68,7 @@ def seed_posts(seeded_user):
         'Black Butler'
     ]
 
-    for i in range(30):
+    for i in range(70):
         post = Post(
             users=seeded_user[i % len(seeded_user)],
             text=f'Sample post {i+1}!!!!',

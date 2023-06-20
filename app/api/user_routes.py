@@ -55,3 +55,27 @@ def edit_user(id):
 
     else:
         return 'Bad Data'
+
+@user_routes.route('/<int:user1id>/follow/<int:user2id>', methods=['PUT'])
+@login_required
+def follow_user(user1id, user2id):
+    user1 = User.query.get(user1id)
+    user2 = User.query.get(user2id)
+
+    user1.following.append(user2)
+
+    db.session.commit()
+
+    return jsonify({'message': 'User followed successfully'})
+
+@user_routes.route('/<int:user1id>/unfollow/<int:user2id>', methods=['PUT'])
+@login_required
+def unfollow_user(user1id, user2id):
+    user1 = User.query.get(user1id)
+    user2 = User.query.get(user2id)
+
+    user1.following.remove(user2)
+
+    db.session.commit()
+
+    return jsonify({'message': 'User unfollowed successfully'})

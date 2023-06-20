@@ -2,7 +2,9 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const GET_ALL_USER = 'session/GET_ALL_USER';
-const EDIT_USER = 'session/EDIT_USER'
+const EDIT_USER = 'session/EDIT_USER';
+const ADD_FOLLOWER = 'session/ADD_FOLLOWER';
+const REMOVE_FOLLOWER = 'session/REMOVE_FOLLOWER'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -27,6 +29,45 @@ const editUserAction = (data) => {
 	}
 }
 
+const addFollowerAction = (id) => {
+	return {
+		type:ADD_FOLLOWER,
+		id
+	}
+}
+
+const removeFollowerAction = (id) => {
+	return{
+		type: REMOVE_FOLLOWER,
+		id
+	}
+}
+
+
+export const addFollowersThunk = (user1Id, user2Id) => async dispatch => {
+	const res = await fetch(`/api/users/${user1Id}/follow/${user2Id}`,{
+		method:'PUT'
+	})
+
+	if(res.ok){
+		dispatch(addFollowerAction(+user2Id))
+	} else {
+		console.log('error is ocuring');
+	}
+}
+
+export const removeFollowerThunk = (user1Id, user2Id) => async dispatch => {
+	const res = await fetch(`/api/users/${user1Id}/unfollow/${user2Id}`, {
+		method:'PUT'
+	})
+
+	if(res.ok){
+		dispatch(removeFollowerAction(+user2Id))
+	} else {
+		console.log('error is occuring');
+	}
+
+}
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -134,6 +175,16 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case ADD_FOLLOWER : {
+			const newState = {...state, user: {...state.user}}
+			newState.user.following.push(action.id)
+			return newState
+		}
+		case REMOVE_FOLLOWER: {
+			const newFollowing = state.user.following.filter((followerId) => followerId !== action.id);
+			const newState = { ...state, user: { ...state.user, following: newFollowing } };
+			return newState;
+		}
 		case GET_ALL_USER: {
 			const newState = {...state, user: {...state.user}, allUser:{...state.allUser}}
 			action.data.users.forEach(user => newState.allUser[user.id] = user)

@@ -17,6 +17,7 @@ import Chat from "./components/DirectMessage.js/directmessage";
 import MessageThreads from "./components/MessageThreads/messagethreads";
 import PageNotFound from "./components/PageNotFound";
 import Loadingpage from "./components/loadingpage";
+import ShowFollowing from "./components/Following";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,11 +59,14 @@ function App() {
           <Route exact path='/search'>
             <SearchPost />
           </Route>
-          <Route path='/directmessage/:userId/:ownerId' exact={true}>
-            <Chat/>
-          </Route>
           <Route path='/test' exact={true}>
             <Loadingpage />
+          </Route>
+          <Route path='/following' exact={true}>
+            <ShowFollowing />
+          </Route>
+          <Route path='/directmessage/:userId/:ownerId' exact={true}>
+            <Chat/>
           </Route>
           <Route>
             <PageNotFound />

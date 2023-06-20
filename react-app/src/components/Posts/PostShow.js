@@ -13,6 +13,7 @@ import EditCommentModal from "../EditCommentModal";
 import DeleteCommentModal from "../DeleteCommentModal";
 import AddtoBoard from "../Boards/AddtoBoardForm";
 import Loadingpage from "../loadingpage";
+import { getAllUserThunk } from "../../store/session";
 
 const OnePost = () => {
     const post = useSelector(state => state.post.onePost)
@@ -29,10 +30,11 @@ const OnePost = () => {
     useEffect(() => {
         dispatch(getPostByIdThunk(id))
         dispatch(getAllCommentsThunk())
+        dispatch(getAllUserThunk())
     }, [dispatch, comment.length])
 
     const comments = post.comments
-    if(!post || post.id !== parseInt(id)){
+    if (!post || post.id !== parseInt(id)) {
         return <Loadingpage />
     }
     return (
@@ -65,7 +67,7 @@ const OnePost = () => {
                             modalComponent={<AddtoBoard id={post.id} />}
                         />
                     </div>
-                    <h2 className="post-title">{post.title}</h2>
+                    <h2 className="post-title" onClick={e => history.push(`/user/${post.userId}`)}>{post.title}</h2>
                     <div>
                         <textarea
                             className="textarea-comment"
@@ -80,9 +82,12 @@ const OnePost = () => {
                             <div className="individual-comments">
                                 <div>
                                     <div className="comment-spacing-div">
-                                        <Link to={`/user/${comment.userId}`}>
-                                            {comment.user.username}
-                                        </Link>
+                                        <div className="user-image-user">
+                                            <img src={comment.user.profilePic} className="user-image" />
+                                            <Link to={`/user/${comment.userId}`}>
+                                                {comment.user.username}
+                                            </Link>
+                                        </div>
                                         {' '}
                                         <div className="word-break">
                                             <textarea
