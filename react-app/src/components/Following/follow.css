@@ -33,3 +33,13 @@
     display: flex;
     justify-content: space-between;
 }
+
+.followbutton{
+    position: absolute;
+    border: 2px solid black;
+    background-color: transparent;
+    color: black;
+    border-radius: 80px;
+    left: 56%;
+    top: 17%;
+}

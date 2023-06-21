@@ -82,13 +82,3 @@
 .button-button:hover{
     border-bottom: 2px solid black;
 }
-
-.followbutton{
-    position: relative;
-    border: 2px solid black;
-    background-color: transparent;
-    color: black;
-    border-radius: 80px;
-    left: -25px;
-    top: -180px;
-}

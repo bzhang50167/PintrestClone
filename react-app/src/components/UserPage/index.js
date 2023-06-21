@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import OpenModalButton from "../OpenModalButton"
 import './user.css'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { addFollowersThunk, getAllUserThunk, removeFollowerThunk } from "../../store/session"
 import BoardForm from "../Boards/BoardForm"
 import EditUserModal from "../EditUserModal"
@@ -15,6 +15,7 @@ const UserPage = () => {
     const { id } = useParams()
     const user = useSelector(state => state.session.allUser)
     const userer = useSelector(state => state.session.user)
+    const [isButtonVisible, setButtonVisible] = useState(true);
     const dispatch = useDispatch()
     const history = useHistory()
     useEffect(() => {
@@ -24,11 +25,19 @@ const UserPage = () => {
     const handleAdd = (e) => {
         e.preventDefault()
         dispatch(addFollowersThunk(userer.id, id))
+        setButtonVisible(false);
+        setTimeout(() => {
+            setButtonVisible(true);
+        }, 1000);
     }
 
     const handleRemove = (e) => {
         e.preventDefault()
         dispatch(removeFollowerThunk(userer.id, id))
+        setButtonVisible(false);
+        setTimeout(() => {
+            setButtonVisible(true);
+        }, 1000);
     }
 
     if (!user) {
@@ -45,12 +54,17 @@ const UserPage = () => {
                         <img className="profile-image" src={user[id].profilePic} />
                     ) : <img className="profile-image" src="https://mangterest-pic.s3.amazonaws.com/11109d2e46ec49e2b8ca2eaa57bb3f86.jpg" />
                     }
-                    {!isFollowing && user[id].email !== userer.email ? (
-                        <button className="followbutton" onClick={handleAdd}><FaPlus /> </button >
+                    {!isFollowing && user[id].email !== userer.email && isButtonVisible ? (
+                        <button className="followbutton" onClick={handleAdd}>
+                            <FaPlus />
+                        </button>
                     ) : null}
-                    {isFollowing && user[id].email !== userer.email ? (
-                        <button className="followbutton" onClick={handleRemove}><FaMinus /> </button >
+                    {isFollowing && user[id].email !== userer.email && isButtonVisible ? (
+                        <button className="followbutton" onClick={handleRemove}>
+                            <FaMinus />
+                        </button>
                     ) : null}
+
                     <div className="nameofuser">
                         {user[id].firstName} {user[id].lastName}
                     </div>
@@ -58,10 +72,10 @@ const UserPage = () => {
                         @{user[id].username}
                     </div>
                     {user[id].email === userer.email ? (
-                    <div className="following" onClick={e => history.push('/following')}>
-                        following {user[id].following.length} user
-                    </div>
-                    ): null}
+                        <div className="following" onClick={e => history.push('/following')}>
+                            following {user[id].following.length} user
+                        </div>
+                    ) : null}
                     {userer.id === +id ? (
                         <div className="outeredit">
                             <div className="editbutton">
