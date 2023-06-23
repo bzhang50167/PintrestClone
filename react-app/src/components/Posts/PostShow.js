@@ -34,7 +34,7 @@ const OnePost = () => {
     }, [dispatch, comment.length])
 
     const comments = post.comments
-    if (!post) {
+    if (!post || post.id !== parseInt(id)) {
         return <Loadingpage />
     }
     return (
