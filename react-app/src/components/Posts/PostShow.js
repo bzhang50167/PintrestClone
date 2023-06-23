@@ -34,7 +34,7 @@ const OnePost = () => {
     }, [dispatch, comment.length])
 
     const comments = post.comments
-    if (!post || post.id !== parseInt(id)) {
+    if (!post) {
         return <Loadingpage />
     }
     return (
@@ -127,6 +127,7 @@ const OnePost = () => {
                                     <div className="individual-comments">
                                         <div>
                                             <div className="comment-spacing-div">
+                                            <img src={comment.user.profilePic} className="user-image" />
                                                 <Link to={`/user/${comment.userId}`}>
                                                     {comment.user.username}
                                                 </Link>
@@ -161,6 +162,7 @@ const OnePost = () => {
                             <div>
                                 {!showComment && (
                                     <div>
+                                        <img src={comments[comments.length - 1].user.profilePic} className="user-image" />
                                         <Link to={`/user/${comments[comments.length - 1].userId}`}>
                                             {comments[comments.length - 1].user.username}
                                         </Link>
@@ -188,6 +190,7 @@ const OnePost = () => {
                                 )}
                                 {!showComment && (
                                     <div>
+                                        <img src={comments[comments.length - 2].user.profilePic} className="user-image" />
                                         <Link to={`/user/${comments[comments.length - 2].userId}`}>
                                             {comments[comments.length - 2].user.username}
                                         </Link>
