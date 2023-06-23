@@ -34,8 +34,8 @@ class User(db.Model, UserMixin):
     followers = db.relationship(
         'User',
         secondary='follows',
-        primaryjoin=follows.columns.followed == id,
-        secondaryjoin=follows.columns.follower == id,
+        primaryjoin=follows.columns.follower == id,
+        secondaryjoin=follows.columns.followed == id,
         back_populates='following'
     )
     following = db.relationship(

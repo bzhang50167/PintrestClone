@@ -18,6 +18,7 @@ import MessageThreads from "./components/MessageThreads/messagethreads";
 import PageNotFound from "./components/PageNotFound";
 import Loadingpage from "./components/loadingpage";
 import ShowFollowing from "./components/Following";
+import ShowFollowers from "./components/Followers";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,9 @@ function App() {
           </Route>
           <Route path='/following' exact={true}>
             <ShowFollowing />
+          </Route>
+          <Route path='/followers' exact={true}>
+            <ShowFollowers />
           </Route>
           <Route path='/directmessage/:userId/:ownerId' exact={true}>
             <Chat/>

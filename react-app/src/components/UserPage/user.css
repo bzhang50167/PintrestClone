@@ -32,7 +32,11 @@
     color: rgb(141, 137, 137);
     justify-content: center;
     align-items: center;
-    font-size: small;
+}
+
+.following:hover{
+    cursor: pointer;
+    color: black;
 }
 
 .following:hover {

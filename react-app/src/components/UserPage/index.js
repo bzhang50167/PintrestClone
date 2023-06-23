@@ -29,6 +29,7 @@ const UserPage = () => {
         setTimeout(() => {
             setButtonVisible(true);
         }, 1000);
+        alert("You have followed this user");
     }
 
     const handleRemove = (e) => {
@@ -38,6 +39,7 @@ const UserPage = () => {
         setTimeout(() => {
             setButtonVisible(true);
         }, 1000);
+        alert("You have unfollowed this user");
     }
 
     if (!user) {
@@ -73,9 +75,15 @@ const UserPage = () => {
                     </div>
                     {user[id].email === userer.email ? (
                         <div className="following" onClick={e => history.push('/following')}>
-                            following {user[id].following.length} user
+                             Following {userer.following.length} Users
                         </div>
                     ) : null}
+                    {user[id].email === userer.email ? (
+                        <div className="following" onClick={e => history.push('/followers')}>
+                            View Followers
+                        </div>
+                    ) : null}
+
                     {userer.id === +id ? (
                         <div className="outeredit">
                             <div className="editbutton">

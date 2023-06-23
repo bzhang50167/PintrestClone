@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
-import './follow.css'
+import './followers.css'
 import { useEffect } from "react"
 import { getAllUserThunk, removeFollowerThunk } from "../../store/session"
 import Loadingpage from "../loadingpage"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
-const ShowFollowing = () => {
+const ShowFollowers = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const allUser = useSelector(state => state.session.allUser)
@@ -19,10 +19,10 @@ const ShowFollowing = () => {
     }
     return (
         <div>
-            <h3>Following:</h3>
+            <h3>People Following You:</h3>
             <div className="following-page">
                 <div className="following-page">
-                    {user.following.length > 0 ? (user.following.map(id => {
+                    {user.followers.length > 0 ? (user.followers.map(id => {
                         const userImage = allUser[id].profilePic ? allUser[id].profilePic : 'https://mangterest-pic.s3.amazonaws.com/11109d2e46ec49e2b8ca2eaa57bb3f86.jpg';
                         return (
                             <div className="main-box">
@@ -44,11 +44,11 @@ const ShowFollowing = () => {
                                 </div>
                             </div>
                         )
-                    })): <h1>You Are Not Following Anyone!</h1>}
+                    })) : <h1>Post Something To Attract Some Followers!!!!</h1>}
                 </div>
             </div>
         </div>
     )
 }
 
-export default ShowFollowing
+export default ShowFollowers
