@@ -76,9 +76,10 @@ const OnePost = () => {
                             value={post.text}
                         />
                     </div>
-                    <h3 className="fit-content">Comments</h3>
-                    {comments?.length >= 1 && comments?.length <= 3 ? (
-                        comments.reverse().map(comment => (
+                    <div>
+
+                        <h3 className="fit-content">Comments</h3>
+                        {comments.reverse().map(comment => (
                             <div className="individual-comments">
                                 <div>
                                     <div className="comment-spacing-div">
@@ -115,116 +116,13 @@ const OnePost = () => {
                                 </div>
                             </div>
                         ))
-                    ) : comments?.length > 3 ? (
-                        <div>
-                            <div
-                                className="viewallcomments"
-                                onClick={e => setShowComment(!showComment)}>
-                                View all {comments.length} Comments
-                            </div>
-                            <div className={showComment ? commentClassName : "hidden"}>
-                                {comments.reverse().map(comment => (
-                                    <div className="individual-comments">
-                                        <div>
-                                            <div className="comment-spacing-div">
-                                            <img src={comment.user.profilePic} className="user-image" />
-                                                <Link to={`/user/${comment.userId}`}>
-                                                    {comment.user.username}
-                                                </Link>
-                                                {' '}
-                                                <div className="word-break">
-                                                    <textarea
-                                                        className="textarea-comment"
-                                                        cols={34}
-                                                        rows={3}
-                                                        value={comment.text}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                {sessionUser?.id === comment.userId ? (
-                                                    <OpenModalButton
-                                                        buttonText='Edit'
-                                                        modalComponent={<EditCommentModal id={comment.id} />}
-                                                    />
-                                                ) : ''}
-                                                {sessionUser?.id === comment.userId ? (
-                                                    <OpenModalButton
-                                                        buttonText='Delete'
-                                                        modalComponent={<DeleteCommentModal id={comment.id} />}
-                                                    />
-                                                ) : ''}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div>
-                                {!showComment && (
-                                    <div>
-                                        <img src={comments[comments.length - 1].user.profilePic} className="user-image" />
-                                        <Link to={`/user/${comments[comments.length - 1].userId}`}>
-                                            {comments[comments.length - 1].user.username}
-                                        </Link>
-                                        <div>
-                                            <textarea
-                                                className="textarea-comment"
-                                                cols={34}
-                                                rows={3}
-                                                value={comments[comments.length - 1].text}
-                                            />
-                                            {sessionUser?.id === comments[comments.length - 1].userId ? (
-                                                <OpenModalButton
-                                                    buttonText='Edit'
-                                                    modalComponent={<EditCommentModal id={comments[comments.length - 1].id} />}
-                                                />
-                                            ) : ''}
-                                            {sessionUser?.id === comments[comments.length - 1].userId ? (
-                                                <OpenModalButton
-                                                    buttonText='Delete'
-                                                    modalComponent={<DeleteCommentModal id={comments[comments.length - 1].id} />}
-                                                />
-                                            ) : ''}
-                                        </div>
-                                    </div>
-                                )}
-                                {!showComment && (
-                                    <div>
-                                        <img src={comments[comments.length - 2].user.profilePic} className="user-image" />
-                                        <Link to={`/user/${comments[comments.length - 2].userId}`}>
-                                            {comments[comments.length - 2].user.username}
-                                        </Link>
-                                        <div>
-                                            <textarea
-                                                className="textarea-comment"
-                                                cols={34}
-                                                rows={3}
-                                                value={comments[comments.length - 2].text}
-                                            />
-                                            {sessionUser?.id === comments[comments.length - 2].userId ? (
-                                                <OpenModalButton
-                                                    buttonText='Edit'
-                                                    modalComponent={<EditCommentModal id={comments[comments.length - 2].id} />}
-                                                />
-                                            ) : ''}
-                                            {sessionUser?.id === comments[comments.length - 2].userId ? (
-                                                <OpenModalButton
-                                                    buttonText='Delete'
-                                                    modalComponent={<DeleteCommentModal id={comments[comments.length - 2].id} />}
-                                                />
-                                            ) : ''}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ) : 'No comments yet! Add one to start the conversation.'}
-                    <div className="comment-bar">
-                        {sessionUser &&
-                            <SubmitBar sessionUser={sessionUser} />
                         }
+                        <div className="comment-bar">
+                            {sessionUser &&
+                                <SubmitBar sessionUser={sessionUser} />
+                            }
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
